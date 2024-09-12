@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Gizz's BLOG</title><meta name="author" content="Gizz"><meta name="copyright" content="Gizz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Gizz&#39;s BLOG">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Gizz&#39;s BLOG">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/%E5%A4%B4%E5%83%8F.png">
+<meta property="article:author" content="Gizz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/%E5%A4%B4%E5%83%8F.png"><link rel="shortcut icon" href="/image/%E5%9B%BE%E6%A0%87.png"><link rel="canonical" href="http://example.com/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Gizz\'s BLOG',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-09-12 20:27:31'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/%E5%A4%B4%E5%83%8F.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/image/top.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Gizz's BLOG"><img class="site-icon" src="/image/R-C.gif"/><span class="site-name">Gizz's BLOG</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Gizz's BLOG</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/08/31/ctf-web%E7%88%86%E7%A0%B4/" title="ctf-web爆破">ctf-web爆破</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-31T13:56:52.000Z" title="发表于 2024-08-31 21:56:52">2024-08-31</time></span></div><div class="content">web爆破web21我们抓包登录发现
+对用户名密码进行了加密 basic加密
+查询发现是 （用户名：密码）再进行base64加密
+利用这个结合字典进行爆破即可
+
+
+
+
+web22这个提示我们用子域名爆破
+但是现在那个域名失效了，正常的话通过子域名爆破得到flag的域名
+然后进入网址查看flag即可
+
+web23打开之后是一段php代码，发现他需要我get一个满足这段代码的token的值
+这里用ai帮助编写了一个脚本爆破出来了
+
+
+web24分析代码可知，这个代码会比较我们get的数字与该代码随机生成的数字是否相同，相同则出flag，那我们只需要用这个代码生成一下随机数即可
+
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/08/31/ctf-web%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" title="ctf-web信息泄露">ctf-web信息泄露</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-31T13:50:33.000Z" title="发表于 2024-08-31 21:50:33">2024-08-31</time></span></div><div class="content">WEBweb信息泄露web1查看网站源码即可
+
+web2在url前加view-source即可查看网页源代码获取flag
+
+web3用burp抓包，flag就在返回包里面
+
+
+web4访问robots.txt  发现flag
+
+
+web5访问index.phps
+
+web6 源码泄露  访问www.zip
+
+
+web7git源码泄露 .git&#x2F;index.php
+
+web8svn信息泄露   .svn&#x2F;
+
+web9vim缓存信息泄露 index.php.swp
+web10抓包发现cookie信息泄露 注意要进行一次url编码
+
+web11查找dns解析记录
+
+web12进入网站后台管理页面，根据提示密码就在网站上 猜测用户名是admin
+
+
+
+web13在页面下面发现document下载 发现后台账号密码
+
+
+
+web14当我们根据提示在url后加加上eaditor后发现一个可以访问目录的地方
+在var&#x2F;www&#x2F;html&#x2F;nothoinghere 里面发现了flag
+我们访问该flag的目录
+
+
+
+web15点击忘记密码后出现密保问题
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/07/20/ctf-misc/" title="ctf-misc">ctf-misc</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-07-20T13:39:55.000Z" title="发表于 2024-07-20 21:39:55">2024-07-20</time></span></div><div class="content">MISC图片杂项bmp文件头
+PNG文件头
+JPG文件头
+GIF文件头
+misc2修改后缀即可
+
+
+
+misc3打开发现是特殊后缀bpg，用bandview打开查看即可
+
+
+misc4打开发现六个txt，根据第一个文本的提示。修改后缀为png，然后将这六个图片的内容拼接起来即可
+
+
+
+misc5用010查看文件，在末尾发现flag
+
+
+misc6用010查看搜索ctf关键词
+
+misc7同misc6
+
+misc8用foremost将图片分离
+
+
+
+
+misc9winhex搜索ctfshow
+misc10用binwalk分离文件
+
+
+misc11用tweakpng打开图片发现有两个idat删除2931那个即可
+
+misc12tweakpng打开图片发现多个idat
+一个一个删除idat这里没有发现什么删除的规律，只能一个一个来
+misc13010打开文件发现好几个疑似flag
+是隔一个取一位
+
+misc14用binwalk分离图片，再用dd提取
+
+
+misc15010查看搜索ctf
+
+misc16利用binwalk分离，直接打开文件
+
+
+misc17利用zsteg这个工具提取flag，再 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/07/07/python%E4%B8%8Ejava%E7%9A%84%E7%AE%A1%E7%90%86/" title="python与java的管理">python与java的管理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-07-07T08:58:33.000Z" title="发表于 2024-07-07 16:58:33">2024-07-07</time></span></div><div class="content">python的虚拟环境设置与多版本管理python的虚拟环境设置前言由于在实际应用过程中，我们通过python下载的依赖库种类版本较多，容易引起冲突。因而考虑通过设置python的虚拟环境，从而实现每一脚本运行的时候都有自己独立的虚拟环境从而实现稳定运行
+虚拟环境工具——venvvenv是python3中自带的配置虚拟环境的工具
+创建虚拟环境python -m venv 文件名
+
+在对应的路径下会生成我们自己命名的文件夹，里面是全新python环境
+
+
+cd到Script目录下查看发现只有pip一个库
+
+激活虚拟环境在Scripts目录下activate.bat激活虚拟环境
+
+虚拟环境应用在虚拟环境中可以进行pip库的随意安装
+
+退出虚拟环境
+python的多版本管理前言工具脚本的使用过程中，有些需要py3环境有些需要py2环境，而一般情况下只能存在一个py环境这就需要对py进行多版本的管理配置
+下载安装pyenvpyenv是管理python多本版的工具，在使用前需要将系统原来的python环境删除
+将下载的pyenv放在英文路径下并重命名为pyenv
+
+找到bin目录并配置该目录下的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/07/02/google%E6%90%9C%E7%B4%A2%E8%AF%AD%E6%B3%95/" title="google搜索语法">google搜索语法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-07-02T11:16:18.000Z" title="发表于 2024-07-02 19:16:18">2024-07-02</time></span></div><div class="content">精确匹配使用引号来搜索一个完全匹配的字词或一组字词。在搜索歌词或文学作品中的一段文字时，此选项很实用。建议您只在查找非常确切的字词或词组时使用该功能，否则可能会无意中排除掉有用的搜索结果。
+例如“见与不见” 搜索结果精确匹配“见与不见”，不能拆分成“见”与“不见”。
+
+排除字词在某个字词前添加短横 (-) 可排除所有包含该字词的搜索结果。****
+例如：大熊猫 -百科 搜索结果中不出现“百科”
+
++包含字词在某个字词前添加加号 (+) 必需包含含该字词的搜索结果。****
+例如：大熊猫 +百科 搜索结果中必需出现“百科”****
+
+~加入类似字词Google 可能会使用同义词代替原始查询中的某些字词。在字词前添加腭化符号 (~) 可同时搜索该字词及其同义词。
+例如：～搜索 搜索结果可能会出现“电影搜索”这样的结果
+
+*通配符字词搜索词中不确定的部分可以用星号*代替，google会匹配相关词。字词忘记或者不确定某些搜索词的情况下非常有用。
+例如： 国家* 匹夫* google搜索会自动匹配出“国家兴亡，匹夫有责”结果。
+
+OR选择性字词搜索选择性字词OR搜索结果匹配多个搜索字词中的任意一 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/%E5%A4%B4%E5%83%8F.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gizz</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/%E5%86%85%E7%BD%91%E5%AD%A6%E4%B9%A0/" title="内网学习">内网学习</a><time datetime="2024-09-12T12:27:20.000Z" title="发表于 2024-09-12 20:27:20">2024-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/web%E6%9C%8D%E5%8A%A1/" title="web服务">web服务</a><time datetime="2024-09-12T12:25:42.000Z" title="发表于 2024-09-12 20:25:42">2024-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" title="网络基础">网络基础</a><time datetime="2024-09-12T12:25:32.000Z" title="发表于 2024-09-12 20:25:32">2024-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" title="渗透学习">渗透学习</a><time datetime="2024-09-12T12:25:03.000Z" title="发表于 2024-09-12 20:25:03">2024-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/Linux/" title="Linux">Linux</a><time datetime="2024-09-12T12:24:48.000Z" title="发表于 2024-09-12 20:24:48">2024-09-12</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">3</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">15</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-09-12T12:27:31.247Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/image/top.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Gizz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, ))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["自小刺头深草里 &#44; 而今渐觉出蓬蒿","时人不识凌云木 &#44; 直待凌云始道高"])
+  } else {
+    document.getElementById("subtitle").textContent = "自小刺头深草里 &#44; 而今渐觉出蓬蒿"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

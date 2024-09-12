@@ -1,0 +1,902 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>渗透学习 | Gizz's BLOG</title><meta name="author" content="Gizz"><meta name="copyright" content="Gizz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="WEB服务器通信原理常见的服务器系统 服务器；本质是一台性能强不关机的电脑，且有独立公网IP 系统；操作系统   服务器系统；  针对于服务器的操作系统（内置服务器专用的东西）    例； window server &#x3D;&gt; window系统         Linux         &#x3D;&gt;   安卓         Mac系统       &#x3D;&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透学习">
+<meta property="og:url" content="http://example.com/2024/09/12/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Gizz&#39;s BLOG">
+<meta property="og:description" content="WEB服务器通信原理常见的服务器系统 服务器；本质是一台性能强不关机的电脑，且有独立公网IP 系统；操作系统   服务器系统；  针对于服务器的操作系统（内置服务器专用的东西）    例； window server &#x3D;&gt; window系统         Linux         &#x3D;&gt;   安卓         Mac系统       &#x3D;&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/%E5%A4%B4%E5%83%8F.png">
+<meta property="article:published_time" content="2024-09-12T12:25:03.000Z">
+<meta property="article:modified_time" content="2024-09-12T12:26:24.013Z">
+<meta property="article:author" content="Gizz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/%E5%A4%B4%E5%83%8F.png"><link rel="shortcut icon" href="/image/%E5%9B%BE%E6%A0%87.png"><link rel="canonical" href="http://example.com/2024/09/12/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '渗透学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-12 20:26:24'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/%E5%A4%B4%E5%83%8F.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/image/top.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Gizz's BLOG"><img class="site-icon" src="/image/R-C.gif"/><span class="site-name">Gizz's BLOG</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">渗透学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-12T12:25:03.000Z" title="发表于 2024-09-12 20:25:03">2024-09-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-12T12:26:24.013Z" title="更新于 2024-09-12 20:26:24">2024-09-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="渗透学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="WEB服务器通信原理"><a href="#WEB服务器通信原理" class="headerlink" title="WEB服务器通信原理"></a>WEB服务器通信原理</h1><h4 id="常见的服务器系统"><a href="#常见的服务器系统" class="headerlink" title="常见的服务器系统"></a>常见的服务器系统</h4><p> 服务器；本质是一台性能强不关机的电脑，且有独立公网IP<br> 系统；操作系统<br>   服务器系统；  针对于服务器的操作系统（内置服务器专用的东西）<br>    例； window server &#x3D;&gt; window系统<br>         Linux         &#x3D;&gt;   安卓<br>         Mac系统       &#x3D;&gt;   苹果手机<br>Linux的特点；对硬件要求低，对新手不友好，只有界面，有很多版本，开源，大公司服务器是linux<br>Window的特点；图形化好上手，对硬件要求高，容易卡，闭源，小公司是window服务器<br>区分两者；<br>        1.看盘符–C；(window)               &#x2F;…(Linux)<br>        2.看路径–window不分大小写，linux区分大小写</p>
+<h4 id="绝对路径与相对路径"><a href="#绝对路径与相对路径" class="headerlink" title="绝对路径与相对路径"></a>绝对路径与相对路径</h4><p>绝对路径；参考系是根目录 例；C:&#x2F;<br>相对路径；参考系是相对…的 例：.&#x2F; (当前目录)         ..&#x2F; (上级目录)           XXX</p>
+<h4 id="Cmd"><a href="#Cmd" class="headerlink" title="Cmd"></a>Cmd</h4><p>window系统是给普通人用的所以限制较多，用cmd可以完成在window普通系统上做不了的事情，直接用指令完成，限制较少 ，更好用<br>可以直接修改密码（在不知道原密码的前提下） ：net user admin ….<br>用cmd右键以管理员身份运行可以提高权限（window权限排名：system administrators user）<br>好用的命令：<br>      dir      查看当前文件夹目录<br>      cd XXX   跳到XXX目录<br>      盘符；    换盘符<br>      shutdown -t 0 -s  关机<br>      tasklist 查看当前进程</p>
+<h4 id="网络方面"><a href="#网络方面" class="headerlink" title="网络方面"></a>网络方面</h4><p>IP:互联网协议地址，缩写为IP地址。  ip实际是就是地址，计算机在互联网上的地址<br>ipv4：0.0.0.0–255.255.255.255    ipv6      ipv8<br>公网和内网:<br>公网（外网）：真实存在的具体的地址，是有限的  百度搜索ip即可查询公网ip，公网ip是由供应商分配的，需要money<br>内网：某个内部存在的地址，是无限的   cmd中ipconfig可以查询内网地址，内网ip是由路由器自动分配的<br>判断内网和公网的方法：百度直接搜索<br>域名：（看点的个数区分域名类别）<br>      顶级域名：只有一个点 baidu.com  花钱买！！！<br>      二级域名：两个点    <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a>  自己生成<br>      三级域名：三个点    a.b.baidu.com  自己生成<br>      多级域名：多个点    a.b.c.baidu.com  自己生成<br> （任何域名都可以指向不同ip）<br>DNS协议：域名和ip的转换，就是把域名和IP相对应起来，是域名转换成ip，而不能反过来。<br>端口：每个服务器对应不同的窗口，就是每个电脑的服务对应不同的端口，类似于门。<br>    netstat -ano 打开端口<br>    电脑有1-65535端口<br>Http协议：<br>   任何的网站都是http协议或https协议<br>   http协议：访问网站用的协议<br>   https协议：http协议的plus版本，经过加密，更安全<br>从访客角度看网页浏览：<br> 用户输入协议+域名&#x3D;&gt;浏览器向dns查询对应ip地址&#x3D;&gt;浏览器发起http请求&#x3D;&gt;服务器返回响应用户的请求&#x3D;&gt;浏览器翻译为人们能识别的图文</p>
+<h1 id="快速自建web安全测试环境"><a href="#快速自建web安全测试环境" class="headerlink" title="快速自建web安全测试环境"></a>快速自建web安全测试环境</h1><p>前端与后端：<br>前端：展现给用户看的页面  （HTML CSS JavaScript）<br>后端：构建应用程序背后的逻辑 （c c++ java php python go）<br>数据库：用来存放数据</p>
+<h1 id="后端基础php"><a href="#后端基础php" class="headerlink" title="后端基础php"></a>后端基础php</h1><p>前端（展示）    后端（功能实现）</p>
+<p>后端语言：ASP(不常用)          ASPX  PHP  JSP</p>
+<h4 id="PHP"><a href="#PHP" class="headerlink" title="PHP:"></a>PHP:</h4><p>PHP是一种开源脚本语言，是动态语言的一种，有C语言，Java和Perl的特点，主要用于Web开发语言。php是将程序嵌入到HTML的文档中去执行，PHP几乎支持所有的流行数据库以及操作系统（window Lniux…）   (PHP就是写网页的!!!)</p>
+<h5 id="PHP的标记风格"><a href="#PHP的标记风格" class="headerlink" title="PHP的标记风格 :"></a>PHP的标记风格 :</h5><p>​        1.XML风格:<?php ?><br>​        2.脚本风格  <script language="php">      </script></p>
+<h5 id="传参："><a href="#传参：" class="headerlink" title="传参："></a>传参：</h5><p>传参就是将数据传输给网站，网站再进行回显<br>GET传参：url栏里有？说明就是get传参<br>POST传参：url栏里有搜索框输入的内容</p>
+<p><img src="file://C:\Users\31717\AppData\Roaming\Typora\typora-user-images\image-20231213202059386.png?lastModify=1702472640" alt="image-20231213202059386"></p>
+<h5 id="PHP的语法"><a href="#PHP的语法" class="headerlink" title="PHP的语法:"></a>PHP的语法:</h5><p>PHP语句用 ; 结尾<br><?php echo  "Hello world"; ?>       echo表示输出，只能输出字符串和数字<br>变量：$a    $代表变量           常量： define(常量名，常量值)<br>单引号’’直接输出原样的内容        双引号“”解析再后输出<br>php输出的拼接符&#x3D;  .    例：echo ‘a’.’b’;  输出结果为ab</p>
+<h1> .... </h1>将里面的内容加粗大写
+
+<p>定义函数：   function  函数名称（）{要执行的代码}<br>return ：返回   “<br />“:换行，要用拼接符符连接前面的<br>var_dump：查看数据类型<br>形参：指形式上的参数，只在函数内部使用，并不会收到外部影响<br>注释：&#x2F;&#x2F;    或者   #（注释单行）              &#x2F;<em>…..</em>&#x2F; （注释多行内容）<br>布尔型：只有true和false<br>&amp;（and）是并且   or是或<br>循环语句：<br>       while循环：while(条件为真) {要执行的代码：}<br>       for循环：同c语言   for($x&#x3D;0;$x&lt;&#x3D;10;$x++){要执行的代码；}<br>       continue会终止单次循环，但是代码会重新执行<br>       break会跳出循环</p>
+<img src="../images/image-20231213205126276.png" alt="image-20231213205126276" style="zoom: 50%;" />
+
+<p>数组：数组就是数据的集合，有多维数组和一维数组。  数组选中的核心就是通过中括号选中数组的键<br>cookie：是浏览器中的身份证，我的权限</p>
+<img src="../images/image-20231213202136710.png" alt="image-20231213202136710" style="zoom:50%;" />
+
+<p>标出来的这两者一定要对应，否则不能接受传输输入框里的数据</p>
+<p>如果在网页上出现乱码，就加上下面这条数据，</p>
+<p><img src="/../images/image-20231213204430063.png" alt="image-20231213204430063"></p>
+<h5 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h5><img src="../images/image-20231213211340057.png" alt="image-20231213211340057" style="zoom:50%;" />
+
+
+
+<h5 id="PHP操作mysql："><a href="#PHP操作mysql：" class="headerlink" title="PHP操作mysql："></a>PHP操作mysql：</h5><p>&lt;img src&#x3D;”C:\Users\31717\AppData\Roaming\Typora\typora-user-images\image-20231213211237606.png” alt&#x3D;”image-20231213211237606” style&#x3D;”zoom: 50%;” &#x2F;</p>
+<p>连接数据库：$conn&#x3D;mysqli_connect(“127.0.0.1”,”root”,”root”,”db_name”);<br>                            数据库地址 账号 密码 数据库名（数据库名可不写）<br>选择数据库：myspli_select_db($conn,”数据库名”)；（如果选择数据库时没有数据库名用这个）<br>执行sql语句：$result&#x3D;mysqli_query($conn,”SQL”);<br>遍历查询结果：<br>           $row &#x3D; mysqli_fetch_row();返回上一些行<br>           $table &#x3D; mysqli_fetch_all();返回全部内容<br>           $row &#x3D; mysqli_fetch_array($result);返回数组<br>关闭数据连接：mysqli_close($conn)</p>
+<h1 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h1><h5 id="什么是表单："><a href="#什么是表单：" class="headerlink" title="什么是表单："></a>什么是表单：</h5><p>表单在网页中主要负责数据采集功能，数据采集用的就是表单，就是说只要在网页上填东西，就是表单。（像是搜索框输入框，反正是带框的都是）（表单时写在前端代码上的）</p>
+<img src="../images/image-20231213192556059.png" alt="image-20231213192556059" style="zoom: 67%;" />
+
+<p>表单分为三部分：</p>
+<p><img src="/../images/image-20231213192647750.png" alt="image-20231213192647750"><br>表单标签的写法：</p>
+ <form action="url" method="GET/POST">
+这个url就是点击表单按钮后跳传到哪个网站      method是指gat传参和post传参两种方式    
+
+
+<p><img src="/../images/image-20231213194817088.png" alt="image-20231213194817088">          </p>
+<p>这个里面的wd是针对百度搜索的跳转的，不能换成其他的。<br>submit是按钮        text 是输入框<br>而且网页也不是随便跳转的，必须得人家网页接受你的跳转才行</p>
+<p><img src="/../images/image-20231213194831710.png" alt="image-20231213194831710"></p>
+<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h5 id="sql注入："><a href="#sql注入：" class="headerlink" title="sql注入："></a>sql注入：</h5><p>​    把用户输入的数据被当作数据库代码执行。<br>​    what是数据库代码：就是像mysal代码  sql语句<br>​    渗透测试的命脉就是传参 </p>
+<p>​    <img src="/../images/image-20231215093900674.png" alt="image-20231215093900674"></p>
+<p>解决在查找时末尾为零搜索不到的情况</p>
+<p><img src="/../images/image-20231215100503601.png" alt="image-20231215100503601"></p>
+<p>strlen判断字符串的长度   strstr表示查找后面的内容</p>
+<p>监测渗透测试的简单方法，这个检测or是否存在，就是最简单的方式也很粗暴</p>
+<img src="../images/image-20231215111643653.png" alt="image-20231215111643653" style="zoom: 50%;" />
+
+<p><img src="/../images/image-20231215111527901.png" alt="image-20231215111527901"></p>
+<h5 id="什么是正则表达式："><a href="#什么是正则表达式：" class="headerlink" title="什么是正则表达式："></a>什么是正则表达式：</h5><p><img src="/../images/image-20231215111814735.png" alt="image-20231215111814735"></p>
+<p>小例子：<img src="../images/image-20231215112404478.png" alt="image-20231215112404478" style="zoom:33%;" /></p>
+<p>‘&#x2F;9&#x2F;‘表示查找$a中的9     int（5）指的是搜索到了五次</p>
+<p><img src="/../images/image-20231215113126223.png" alt="image-20231215113126223"></p>
+<p>这个就是将XXX替换成XXX</p>
+<img src="../images/image-20231215113552772.png" alt="image-20231215113552772" style="zoom:33%;" />
+
+<img src="../images/image-20231215113617258.png" alt="image-20231215113617258" style="zoom:33%;" />
+
+<h5 id="正则表达式的函数"><a href="#正则表达式的函数" class="headerlink" title="正则表达式的函数"></a>正则表达式的函数</h5><p><img src="/../images/image-20240408190117723.png" alt="image-20240408190117723"></p>
+<p><img src="/../images/image-20240408190131900.png" alt="image-20240408190131900"></p>
+<p><img src="/../images/image-20240408190345440.png" alt="image-20240408190345440"></p>
+<p><img src="/../images/image-20240408190356663.png" alt="image-20240408190356663">	</p>
+<h5 id="正则表达式的语法"><a href="#正则表达式的语法" class="headerlink" title="正则表达式的语法"></a>正则表达式的语法</h5><h6 id="1-字符"><a href="#1-字符" class="headerlink" title="1.字符"></a>1.字符</h6><p><img src="/../images/image-20231215114421963.png" alt="image-20231215114421963"></p>
+<p>\d:</p>
+<p><img src="/../images/image-20231215114704691.png" alt="image-20231215114704691"></p>
+<img src="../images/image-20231215114802493.png" alt="image-20231215114802493" style="zoom:33%;" />
+
+<p>\D:</p>
+<p><img src="/../images/image-20231215114912595.png" alt="image-20231215114912595"></p>
+<p>i</p>
+<p><img src="/../images/image-20231215115336632.png" alt="image-20231215115336632"></p>
+<p>例   [a-z] :    (从[A-a]也可以匹配)</p>
+<p>[] 里的^表示取反 比方说：[a-z]b表示匹配从a到z  </p>
+<p>[^a-z]表示匹配除了从a到z的一切</p>
+<p><img src="/../images/image-20231215115437884.png" alt="image-20231215115437884"></p>
+<img src="../images/image-20231215115510990.png" alt="image-20231215115510990" style="zoom:33%;" />
+
+<p>注（在ascll表中  A对应65）</p>
+<p>…………</p>
+<h6 id="2-关键字"><a href="#2-关键字" class="headerlink" title="2.关键字"></a>2.关键字</h6><img src="../images/image-20231215141206331.png" alt="image-20231215141206331" style="zoom: 67%;" />
+
+<p>（）代表着一个整体，和数学括号同理</p>
+<p>单独的^ 表示匹配字符串的开头，就是他只能匹配到以…字符开头的</p>
+<p><img src="/../images/image-20231215141140103.png" alt="image-20231215141140103"></p>
+<p>$匹配结尾同匹配开头同理（限定开头和结尾就是限定字符长度，所以的区间都是一个字符）</p>
+<p>+表示匹配一次或多次（单个一个可以，多个加起来也可以）</p>
+<img src="../images/image-20231215142324555.png" alt="image-20231215142324555" style="zoom: 33%;" />
+
+<p>*表示匹配0次或多次（匹配不到也会算作一次）</p>
+<img src="../images/image-20231215142431210.png" alt="image-20231215142431210" style="zoom:33%;" />
+
+<img src="../images/image-20231215142555345.png" alt="image-20231215142555345" style="zoom:33%;" />
+
+<p>.*可以匹配换行以外所有的东西</p>
+<img src="../images/image-20231215142802735.png" alt="image-20231215142802735" style="zoom:33%;" />
+
+<img src="../images/image-20231215142943122.png" alt="image-20231215142943122" style="zoom:33%;" />
+
+<p>……….</p>
+<h6 id="3-修饰符"><a href="#3-修饰符" class="headerlink" title="3.修饰符"></a>3.修饰符</h6><p><img src="/../images/image-20231215143815502.png" alt="image-20231215143815502"></p>
+<p><img src="/../images/image-20231215144215304.png" alt="image-20231215144215304"></p>
+<h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><h5 id="为什么要信息收集："><a href="#为什么要信息收集：" class="headerlink" title="为什么要信息收集："></a>为什么要信息收集：</h5><p>就是要找到薄弱点进行攻击</p>
+<h5 id="信息收集的方向："><a href="#信息收集的方向：" class="headerlink" title="信息收集的方向："></a>信息收集的方向：</h5><h6 id="1-whois信息"><a href="#1-whois信息" class="headerlink" title="1.whois信息"></a>1.whois信息</h6><p><img src="/../images/image-20231215153043979.png" alt="image-20231215153043979"></p>
+<h6 id="2-企业信息"><a href="#2-企业信息" class="headerlink" title="2.企业信息"></a>2.企业信息</h6><img src="../images/image-20231215153310225.png" alt="image-20231215153310225" style="zoom:50%;" />
+
+<h6 id="3-子域名"><a href="#3-子域名" class="headerlink" title="3.子域名"></a>3.子域名</h6><p><img src="/../images/image-20231215154830158.png" alt="image-20231215154830158"></p>
+<p><img src="/../images/image-20231215183535167.png" alt="image-20231215183535167"></p>
+<p><img src="/../images/image-20231218104716747.png" alt="image-20231218104716747"></p>
+<p>子域名</p>
+<ul>
+<li><p>谷歌语法</p>
+<ul>
+<li>site: 指定域名</li>
+</ul>
+</li>
+</ul>
+<h6 id="4-端口探测"><a href="#4-端口探测" class="headerlink" title="4.端口探测"></a>4.端口探测</h6><p><img src="/../images/image-20231215155853977.png" alt="image-20231215155853977"></p>
+<p>nmap（kali自带）</p>
+<pre><code>- 基础命令
+
+    - -p
+
+        - 指定端口扫描
+
+    - -v
+
+        - 显示扫描过程
+
+    - -Pn
+
+        - 跳过主机发现过程直接端口扫描 [目标禁ping时]
+
+    - -O
+
+        - 探测主机操作系统
+
+    - -A
+
+        - 全面扫描，包括一切探测
+
+- 端口扫描状态
+
+    - Opend 端口开放
+    - Closed 端口关闭
+    - Filtered 端口被过滤
+</code></pre>
+<h6 id="5-网络空间搜索引擎"><a href="#5-网络空间搜索引擎" class="headerlink" title="5.网络空间搜索引擎"></a>5.网络空间搜索引擎</h6><p><img src="/../images/image-20231215160241307.png" alt="image-20231215160241307"></p>
+<h6 id="6-目录扫描"><a href="#6-目录扫描" class="headerlink" title="6.目录扫描"></a>6.目录扫描</h6><p><img src="/../images/image-20231215162338909.png" alt="image-20231215162338909"></p>
+<h6 id="7-指纹识别"><a href="#7-指纹识别" class="headerlink" title="7.指纹识别"></a>7.指纹识别<img src="../images/image-20231215183546247.png" alt="image-20231215183546247" style="zoom:33%;" /></h6><h6 id="8-旁站查询"><a href="#8-旁站查询" class="headerlink" title="8.旁站查询"></a>8.旁站查询</h6><p>旁站</p>
+<ul>
+<li><p>在线工具</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://stool.chinaz.com/same">http://stool.chinaz.com/same</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.webscan.cc/">https://www.webscan.cc/</a></li>
+</ul>
+</li>
+</ul>
+<h6 id="9-c端扫描"><a href="#9-c端扫描" class="headerlink" title="9.c端扫描"></a>9.c端扫描</h6><p><img src="/../images/image-20231215163743596.png" alt="image-20231215163743596"></p>
+<h6 id="10-内容敏感信息泄露"><a href="#10-内容敏感信息泄露" class="headerlink" title="10.内容敏感信息泄露"></a>10.内容敏感信息泄露</h6><img src="../images/image-20231215173158371.png" alt="image-20231215173158371" style="zoom:50%;" />
+
+<p>谷歌语法：（Google hacking百度搜索）</p>
+<p><img src="/../images/image-20231215175754747.png" alt="image-20231215175754747"></p>
+<p><img src="/../images/image-20231215175807687.png" alt="image-20231215175807687"></p>
+<p>内容敏感信息</p>
+<ul>
+<li><p>谷歌语法</p>
+<ul>
+<li><p>site:</p>
+<ul>
+<li>指定域名</li>
+</ul>
+</li>
+<li><p>filetype:</p>
+<ul>
+<li>指定文件类型</li>
+</ul>
+</li>
+<li><p>inurl:</p>
+<ul>
+<li>指定URL</li>
+</ul>
+</li>
+<li><p>link:</p>
+<ul>
+<li>包含指定网页的链接的网页</li>
+</ul>
+</li>
+<li><p>intitle:</p>
+<ul>
+<li>指定title</li>
+</ul>
+</li>
+<li><p>intext:</p>
+<ul>
+<li>指定内容</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="11">
+<li></li>
+</ol>
+<ul>
+<li><p>在线平台</p>
+<ul>
+<li><p>ip反查域名</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://dns.aizhan.com/">https://dns.aizhan.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://reverseip.domaintools.com/">https://reverseip.domaintools.com/</a>  (因为有人查过他记录)</li>
+</ul>
+</li>
+<li><p>微步社区</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://x.threatbook.cn/">https://x.threatbook.cn/</a></li>
+</ul>
+</li>
+<li><p>站长工具</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://tool.chinaz.com/subdomain/">http://tool.chinaz.com/subdomain/</a></li>
+</ul>
+</li>
+<li><p>潮汐指纹</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://finger.tidesec.com/">http://finger.tidesec.com/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用工具爆破DNS服务器</p>
+<ul>
+<li><p>PYthon</p>
+<ul>
+<li><p>subDomainsBrute</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/lijiejie/subDomainsBrute">https://github.com/lijiejie/subDomainsBrute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>exe工具</p>
+<ul>
+<li>Layer.exe</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>网页内蜘蛛爬虫</p>
+<p>- </p>
+<p>  <em>XMind: ZEN - Trial Version</em></p>
+</li>
+</ul>
+<p><em>XMind: ZEN - Trial Version</em></p>
+<p>总结：总之信息搜集就是以各种方式，各种手段搜集目标对象的相关信息，从而获取对自己有用的，找到可以下手的地方，信息搜集可以说是渗透工作的基本准备阶段，给自己更多的方式方法下手，当正面行不通时可以通过该目标的其他方面下手，这就需要信息收集，把目标对象一点点的剖析出来。</p>
+<p>同时信息搜集的方法种类繁多，而且也有大量工具，需要积累与反复使用，灵活掌握各种工具方法。</p>
+<h1 id="sql注入的原理分析"><a href="#sql注入的原理分析" class="headerlink" title="sql注入的原理分析"></a>sql注入的原理分析</h1><h5 id="sql注入原理简介"><a href="#sql注入原理简介" class="headerlink" title="sql注入原理简介"></a>sql注入原理简介</h5><p>简介：<img src="../images/image-20231218211630310.png" alt="image-20231218211630310" style="zoom:50%;" /></p>
+<p>原理：<img src="../images/image-20231218211802413.png" alt="image-20231218211802413" style="zoom:50%;" /></p>
+<h5 id="sql注入的基本流程"><a href="#sql注入的基本流程" class="headerlink" title="sql注入的基本流程"></a>sql注入的基本流程</h5><img src="../images/image-20231218214115231.png" alt="image-20231218214115231" style="zoom:33%;" />
+
+<h6 id="1-判断是否存在注入"><a href="#1-判断是否存在注入" class="headerlink" title="1.判断是否存在注入"></a>1.判断是否存在注入</h6><p><img src="/../images/image-20231218212846850.png" alt="image-20231218212846850"></p>
+<p>注意：url栏里有的需要重新编译，否则会报错，比如表示加法应该是将+编译为url栏的编码。</p>
+<h6 id="2-判断字段数"><a href="#2-判断字段数" class="headerlink" title="2.判断字段数"></a>2.判断字段数</h6><p><img src="C:/Users/31717/Desktop/笔记/images/image-20231218213450235.png" alt="image-20231218213450235" style="zoom: 50%;" /><img src="../images/image-20231218213640460.png" alt="image-20231218213640460" styl="zoom:50%;" style="zoom:50%;" /></p>
+<p>就是说用order by对数据库的列表进行排列，by1就是排列第一列  by2就是第二列 by3时报错就说明没有第三列</p>
+<p><img src="/../images/image-20231218214003192.png" alt="image-20231218214003192"></p>
+<h6 id="3-判断显错位"><a href="#3-判断显错位" class="headerlink" title="3.判断显错位"></a>3.判断显错位</h6><p>联合查询：union select 联合查询前后的sql语句的字段数要相同，否则联合查询无效</p>
+<p>字段数：就是数据库表中的列数<img src="/../images/image-20231218220618977.png" alt="image-20231218220618977"></p>
+<p>在sql注入时，利用联合查询，让前面的sql语句出错，从而显示后面我们自己写的sql语句，从而看出显错位来（前面判断出有几个字段数，我们就要在后面的sql语句写几个填充字段，填充字段无实义）</p>
+<p><img src="/../images/image-20231218220100851.png" alt="image-20231218220100851"></p>
+<img src="../images/image-20231218220108432.png" alt="image-20231218220108432" style="zoom:50%;" />
+
+<p>最后看到界面上出现哪个数据就说明回显点在哪</p>
+<h6 id="4-判断库名"><a href="#4-判断库名" class="headerlink" title="4.判断库名"></a>4.判断库名</h6><p>在回显点输入database()，从而在页面上显示数据库名</p>
+<p><img src="/../images/image-20231218220933686.png" alt="image-20231218220933686"></p>
+<p><img src="/../images/image-20231218221343300.png" alt="image-20231218221343300"></p>
+<h6 id="5-判断表名"><a href="#5-判断表名" class="headerlink" title="5.判断表名"></a>5.判断表名</h6><p>union select 1，table_name from information_schema.tables where table _schema&#x3D;databases()</p>
+<p>其中的table_name表示表名的意思     information_schema这个是mysql中带有的库 .table表示 information_schema中的表</p>
+<p>where table _schema&#x3D;databases()表示库名等于当前页面数据库名</p>
+<p><img src="/../images/image-20231218223649585.png" alt="image-20231218223649585"></p>
+<p><img src="/../images/image-20231218223702240.png" alt="image-20231218223702240"></p>
+<p><img src="/../images/image-20231218223750882.png" alt="image-20231218223750882"></p>
+<p>limt的用法：<img src="/../images/2020061921012787.png" alt="img"></p>
+<p><img src="/../images/image-20231218224028412.png" alt="image-20231218223909457"></p>
+<p>上面的SQL语句,limit有两个参数，第一个参数表示从第几行数据开始查，第二个参数表示查几条数据，“limit 3,2”表示从第四行数据开始，取两条数据。</p>
+<h6 id="6-判断列名"><a href="#6-判断列名" class="headerlink" title="6.判断列名"></a>6.判断列名</h6><p><img src="/../images/image-20231218224455178.png" alt="image-20231218224455178"></p>
+<p>7.判断数据</p>
+<p><img src="/../images/image-20231218224813582.png" alt="image-20231218224813582"></p>
+<h5 id="sql注入的实操"><a href="#sql注入的实操" class="headerlink" title="sql注入的实操"></a>sql注入的实操</h5><p><img src="/../images/image-20231218225522053.png" alt="image-20231218225522053"></p>
+<p>1.当有单引号或者括号时，要注意闭合问题，要让输出的语句被当作代码执行，用单引号或者注释</p>
+<p><img src="/../images/image-20231218225805394.png" alt="image-20231218225805394">	</p>
+<p><img src="/../images/image-20231218230234605.png" alt="image-20231218230234605"></p>
+<h1 id="渗透测试常用工具"><a href="#渗透测试常用工具" class="headerlink" title="渗透测试常用工具"></a>渗透测试常用工具</h1><h5 id="环境的安装"><a href="#环境的安装" class="headerlink" title="环境的安装"></a>环境的安装</h5><p><img src="/../images/image-20231218193412153.png" alt="image-20231218193412153"></p>
+<p>环境变量 (environment variables)</p>
+<p>环境变量 (environment variables) 是在操作系统中用来指定操作系统运行环境的一些参数。环境变量是在操作系统中一个具有特定名字的对象，它包含了一个或者多个应用程序所使用到的信息。Windows 和 DOS 操作系统中的 path 环境变量，当要求系统运行一个程序而没有告诉它程序所在的完整路径时，系统除了在当前目录下面寻找此程序外，还应到 path 中指定的路径去找。用户通过设置环境变量，来更好的运行进程。<br>（就是环境变量中存在的，可以直接通过cmd输入名称打开exe文件）</p>
+<h6 id="在虚拟机文件移动时可以用3389操作："><a href="#在虚拟机文件移动时可以用3389操作：" class="headerlink" title="在虚拟机文件移动时可以用3389操作："></a>在虚拟机文件移动时可以用3389操作：<img src="../images/image-20231218191706412.png" alt="image-20231218191706412" style="zoom: 50%;" /></h6><p>步骤：1.先允许此虚拟机进行远程连接 <img src="../images/image-20231218191012877.png" alt="image-20231218191012877" style="zoom:33%;" /></p>
+<p>​           2.再查找此虚拟机的ip地址 （ipconfig）<img src="/../images/image-20231218191142913.png" alt="image-20231218191142913"></p>
+<p>​           3.再给自己虚拟机设置账号密码<img src="../images/image-20231218191303482.png" alt="image-20231218191303482" style="zoom:33%;" /></p>
+<p>​          4.再搜索远程桌面<img src="../images/image-20231218191353296.png" alt="image-20231218191353296" style="zoom:50%;" /></p>
+<h6 id="1-python的环境"><a href="#1-python的环境" class="headerlink" title="1.python的环境"></a>1.python的环境</h6><img src="../images/image-20231218190452893.png" alt="image-20231218190452893" style="zoom: 67%;" />
+
+<p>在选python时选择这个（直接用课程发的安装包）</p>
+<p><img src="/../images/image-20231218190238864.png" alt="image-20231218190238864"></p>
+<h6 id="2-java的环境"><a href="#2-java的环境" class="headerlink" title="2.java的环境"></a>2.java的环境</h6><p>java有两种环境：<img src="/../images/image-20231218193217074.png" alt="image-20231218193217074"></p>
+<p>JDK 和 JRE 有什么区别？\1. 定义</p>
+<p>JDK是Java开发工具包，包含了Java的开发工具和Java的运行环境。它包含了用于编译、调试和运行Java程序的各种工具和API。而JRE是Java的运行环境，包含了运行Java程序所需的所有文件和类库。</p>
+<p>\2. 包含内容</p>
+<p>JDK包含三部分：Java编译器、Java工具库和JRE。</p>
+<p>JRE只包含Java虚拟机（JVM）、Java类库和其他一些支持Java运行的文件。</p>
+<p>\3. 使用场景</p>
+<p>JDK适用于Java的开发人员，包含了创建和调试Java程序所用的所有工具。它适合于需要开发Java程序的开发人员，例如编写Java应用程序、Java Applet、Java Servlet等。</p>
+<p>JRE适用于需要运行Java程序的用户，包含了Java虚拟机和Java类库，可以让用户运行Java程序。它适合于需要运行Java程序的用户，例如运行Java桌面程序、Java Applet等。</p>
+<p>总之，JDK和JRE的主要区别在于它们的用途不同，JDK用于开发Java程序，而JRE用于运行Java程序。但是为了运行Java程序，需要先安装JRE。</p>
+<h5 id="sqlmap"><a href="#sqlmap" class="headerlink" title="sqlmap"></a>sqlmap</h5><p>如何使用：</p>
+<p> 在sqlmap的文件路径中输入cmd<img src="/../images/image-20231218200813139.png" alt="image-20231218200813139"></p>
+<p> 然后输入</p>
+<p><img src="/../images/image-20231218200851136.png" alt="image-20231218200851136"></p>
+<p>根据目的来输入sqlmap的基础指令</p>
+<p>例如：-u+网址  他会自动分析该网址存在的sql注入<img src="/../images/image-20231218202403709.png" alt="image-20231218202403709"></p>
+<p> 然后注意看这个，这里是分析该网站存在的sql注入<img src="/../images/image-20231218202526465.png" alt="image-20231218202526465"></p>
+<p>sqlmap的一些常用指令</p>
+<p><img src="/../images/image-20231218201012835.png" alt="image-20231218201012835"></p>
+<p><img src="/../images/image-20231218201012835.png" alt="image-20231218201012835"></p>
+<p><img src="/../images/image-20231218205509790.png" alt="image-20231218205509790"></p>
+<p><img src="/../images/image-20231219143605793.png" alt="image-20231219143605793">挂代理</p>
+<p><img src="/../images/image-20231219143825099.png" alt="image-20231219143825099"></p>
+<h5 id="burpsuite"><a href="#burpsuite" class="headerlink" title="burpsuite"></a>burpsuite</h5><p><img src="/../images/image-20231219143634379.png" alt="image-20231219143634379"></p>
+<p>burpsuite就是一个对目标对象的数据包进行截获的软件，相当于这个数据包必须先通过它再传输到别的地方去</p>
+<p>当burp无法捕获目标网页的数据包时，要下载证书。注意（电脑浏览器是什么端口就是输入哪个端口来下载证书）</p>
+<p><img src="/../images/image-20231219144036214.png" alt="image-20231219144036214"></p>
+<p>证书：什么是网站安全证书？本质上，网站安全证书是由行业认可的第三方（称为证书颁发机构CA）颁发的一种证书。更具体地说，它是一个数字文件，其中包含由CA发布的信息，该信息表明该网站已使用加密连接进行了安全保护。</p>
+<p>网站安全证书也称为SSL证书、HTTPS证书和SSL服务器证书，不论是哪种称呼，他们的目标都是一致的——保护网站的基本安全。</p>
+<p>网站安全证书是如何工作的？</p>
+<p>简而言之，您可以使用这种类型的证书来声明组织的身份，并相互认证客户端和Web服务器，以通过称为TLS握手的过程建立安全的加密连接 。从技术角度来看，执行所有必要的加密功能是基础，这使客户端可以通过安全的HTTPS协议与您的网站连接。这涉及：</p>
+<p>1）交换密码套件和参数，以确定双方都支持哪些加密功能，</p>
+<p>2）验证交换中的一方或双方</p>
+<p>3）交换密钥并生成对称的会话密钥。</p>
+<p>握手完成后，通过此安全连接，用户可以将信息传输到您的站点，中间人拦截不了的任何数据。</p>
+<p><a href="https://link.zhihu.com/?target=https://www.wosign.com/tag/wangyeanquanssl.htm">网站安全证书</a>可以帮助您促进客户端和服务器之间的安全加密连接，结合身份验证的好处，这意味着用户可以放心地进行交易，在保障网站安全的同时还能提升业务的在线交易率，功能比较强大，建议大家尽快部署。</p>
+<h5 id="浏览器插件"><a href="#浏览器插件" class="headerlink" title="浏览器插件"></a>浏览器插件</h5><p><img src="/../images/image-20231221093434375.png" alt="image-20231221093434375"></p>
+<h1 id="POST注入"><a href="#POST注入" class="headerlink" title="POST注入"></a>POST注入</h1><p><img src="/../images/image-20231220223038621.png" alt="image-20231220223038621"></p>
+<p>同get注入，基本和get一样</p>
+<p><img src="/../images/image-20231220225716660.png" alt="image-20231220225716660"></p>
+<p><img src="/../images/image-20231220225634352.png" alt="image-20231220225634352"></p>
+<h1 id="HEAD注入-报错注入"><a href="#HEAD注入-报错注入" class="headerlink" title="HEAD注入-报错注入"></a>HEAD注入-报错注入</h1><h5 id="head注入的原理："><a href="#head注入的原理：" class="headerlink" title="head注入的原理："></a>head注入的原理：</h5><p><img src="/../images/image-20231220230818954.png" alt="image-20231220230818954"></p>
+<p><img src="/../images/image-20231220230928018.png" alt="image-20231220230928018"></p>
+<p><img src="/../images/image-20231220231059789.png" alt="image-20231220231059789"></p>
+<p><img src="/../images/image-20231220231129420.png" alt="image-20231220231129420"></p>
+<p><img src="/../images/image-20231220231443807.png" alt="image-20231220231443807"></p>
+<p>报错注入实质：就是通过修改头部数据让其报错（updatexml函数中写特殊字符让其报错）通过concat拼接字符串从而显示想要的数据。</p>
+<p>  <img src="/../images/image-20231220231854906.png" alt="image-20231220231854906"></p>
+<p><img src="/../images/image-20231220231905671.png" alt="image-20231220231905671"></p>
+<p><img src="/../images/image-20231220231921436.png" alt="image-20231220231921436"></p>
+<p>不能报错表单</p>
+<h5 id="head注入的实操："><a href="#head注入的实操：" class="headerlink" title="head注入的实操："></a>head注入的实操：</h5><p>用插件或者burp修改头部数据（ua ，refer ，  ip   请求头…..）</p>
+<p><img src="/../images/image-20231221091153181.png" alt="image-20231221091153181"></p>
+<p>可以先写一个sleep验证一下是否生效</p>
+<p><img src="/../images/image-20231221091258960.png" alt="image-20231221091258960"></p>
+<p>然后修改头部数据，使其报错注入</p>
+<h6 id="注：报错注入是不能出现-的"><a href="#注：报错注入是不能出现-的" class="headerlink" title="注：报错注入是不能出现*的"></a>注：报错注入是不能出现*的</h6><h5 id="请求头："><a href="#请求头：" class="headerlink" title="请求头："></a>请求头：</h5><p>由于防止访问数据过大的问题，就会有缓存服务器出现，访问者先访问缓存服务器（代理）再通过缓存服务器请求真实网站的数据。</p>
+<p><img src="/../images/image-20231221092358812.png" alt="image-20231221092358812"></p>
+<p><img src="/../images/image-20231221092407816.png" alt="image-20231221092407816"></p>
+<p>因为存在缓存服务器的问题，所以真实的网站想要获取你的ip就需要获取你的请求头数据，他无法直接获取ip，只能通过请求头获取（缓存服务器将a的ip转换成请求头告诉真实的网站，然后真实的网站再翻译成ip）</p>
+<p>这里的缓存服务器就相当于代理</p>
+<p><img src="/../images/image-20231221092838625.png" alt="image-20231221092838625"></p>
+<p>高匿代理：不会告诉别人访问者真实的ip</p>
+<p><img src="/../images/image-20231221093234228.png" alt="image-20231221093234228"></p>
+<p>转译\后面的符号会被当做字符串，所以就能绕过单引号闭合了</p>
+<h1 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h1><h5 id="魔术引号"><a href="#魔术引号" class="headerlink" title="魔术引号"></a>魔术引号</h5><img src="../images/image-20231220191244575.png" alt="image-20231220191244575" style="zoom: 50%;" />
+
+<p><img src="/../images/image-20231220191315860.png" alt="image-20231220191315860"></p>
+<p>如何解决魔术引号：</p>
+<p>绕过：<img src="/../images/image-20231220191520618.png" alt="image-20231220191520618"></p>
+<h5 id="宽字节注入原理"><a href="#宽字节注入原理" class="headerlink" title="宽字节注入原理"></a>宽字节注入原理</h5><p>由于每个国家都有不同的语言，有些语言比较复杂（汉语），因此会出现多字符编码，但是多字符编码会存在歧义，因为不同的国家存在不同的言语也就有不同的编码方式，因此相同的数据可能会被编译成不同的结果。</p>
+<p>因此–会容易出现歧义<img src="/../images/image-20231220210102825.png" alt="image-20231220210102825"></p>
+<p><img src="/../images/image-20231220210121985.png" alt="image-20231220210121985"></p>
+<p>因此宽字节注入的核心就是通过再写一个单字节，从而让原来的单字节与现有的单字节重新组成一个新的双字节形成不同的意思从而实现绕过。</p>
+<p><img src="/../images/image-20231220210831542.png" alt="image-20231220210831542"></p>
+<p>GBK——专门为解决汉字的编码而生成的解决方案。</p>
+<p>如何判断数据库是不是GBKJ编码：</p>
+<p><img src="/../images/image-20231220211003792.png" alt="image-20231220211003792"></p>
+<h5 id="宽字节实战"><a href="#宽字节实战" class="headerlink" title="宽字节实战"></a>宽字节实战</h5><p><img src="/../images/image-20231220211803999.png" alt="image-20231220211803999"></p>
+<p>就是在反斜杠前写单字节凑成汉字，可以多多尝试不同的方式，只要能凑出来就行</p>
+<p><img src="/../images/image-20231220211952132.png" alt="image-20231220211952132"></p>
+<p><img src="/../images/image-20231220211912345.png" alt="image-20231220211912345"></p>
+<p><img src="/../images/image-20231220211922504.png" alt="image-20231220211922504"></p>
+<p>由于此题逢单引号就是加反斜杠，而只有单双引号中能出现字符串，但是\‘就是字符串，所以题目会报错，可以采用如下方法：</p>
+<p><img src="/../images/image-20231221162637986.png" alt="image-20231221162637986"></p>
+<p>可以将需要用单引号的sql语句替换成不需要用的从而实现替换，或者是用嵌套法（不过嵌套法有点繁琐</p>
+<p>）</p>
+<p><img src="/../images/image-20231220213408340.png" alt="image-20231220213408340"></p>
+<p>将自己需要写的东西转换成16进制的形式从而写上去（需要写0x后面的语句才会被计算机识别成16进制的形式）</p>
+<p>注：有的时候需要手动闭合网址sqlmap才能扫出来，不要过于依赖工具 </p>
+<p>在面对输入对话框中不是url编码时</p>
+<p>1.用burp修改16进制代码</p>
+<img src="../images/image-20231220215837226.png" alt="image-20231220215837226" style="zoom:50%;" />
+
+<p>2.骚办法-传参汉字</p>
+<p><img src="/../images/image-20231220220151282.png" alt="image-20231220220151282"></p>
+<p>通过传参汉字，让汉字转换成编码从而让反斜杠结合后实现绕过，不过有的不可以，有的可以</p>
+<p><img src="/../images/image-20231220220816466.png" alt="image-20231220220816466"></p>
+<h1 id="Access-Cookie注入"><a href="#Access-Cookie注入" class="headerlink" title="Access-Cookie注入"></a>Access-Cookie注入</h1><p><img src="/../images/image-20231225141830073.png" alt="image-20231225141830073"></p>
+<h5 id="Cookie注入简介"><a href="#Cookie注入简介" class="headerlink" title="Cookie注入简介"></a>Cookie注入简介</h5><p><img src="/../images/image-20231225144002187.png" alt="image-20231225144002187"></p>
+<p>cookie注入就是传参方式为REQUEST时可以获取cookie传参 ，从而进行cookie注入（但是当php版本为5.4以上时，REQUEST就不会接受cookie传参了）</p>
+<h5 id="设置Cookie"><a href="#设置Cookie" class="headerlink" title="设置Cookie"></a>设置Cookie</h5><h6 id="1-利用burp"><a href="#1-利用burp" class="headerlink" title="1.利用burp"></a>1.利用burp<img src="/../images/image-20231225144943298.png" alt="image-20231225144943298"></h6><h6 id="2-利用浏览器"><a href="#2-利用浏览器" class="headerlink" title="2.利用浏览器"></a>2.利用浏览器</h6><p><img src="/../images/image-20231225145120324.png" alt="image-20231225145120324"></p>
+<p>解释一下escape这个函数，在用浏览器修改cookie的时候，尽量养成写代码的时候加上escape</p>
+<p><img src="/../images/image-20231225145420132.png" alt="image-20231225145420132"></p>
+<p>3.利用插件</p>
+<h5 id="Cookie靶场"><a href="#Cookie靶场" class="headerlink" title="Cookie靶场"></a>Cookie靶场</h5><p>注意：当cookie传参与get传参同时存在的时候，优先显示get传参</p>
+<p>在写完cookie注入时要在url栏里回车，尽量不要用浏览器的刷新</p>
+<p><img src="/../images/image-20240310115848515.png" alt="image-20240310115848515"></p>
+<p><img src="/../images/image-20231225154348541.png" alt="image-20231225154348541"></p>
+<p><img src="/../images/image-20231225151125289.png" alt="image-20231225151125289"></p>
+<p><img src="/../images/image-20231225154024095.png" alt="image-20231225154024095"></p>
+<p>不知道表名：用exists爆破。可以猜一下常用表名或者用burp字典爆破</p>
+<p>cookie注入与sql注入有一些相似，cookie注入就是传参方式发生了变化。</p>
+<p>小注:</p>
+<p>在cookie注入里面不能用limit选定查找字段。limit是mysql中的语句</p>
+<p>如果想选定字段进行查找，用top number top几就是选前几个数字，然后在后面用order by进行排序，order </p>
+<p>by 1就是对一条数据进行排序，desc就是倒叙，也就是说取前三个字段进行倒叙排列，然后取排列后的第一条</p>
+<p>（不明白就再查查）</p>
+<p><img src="/../images/image-20231226153724685.png" alt="image-20231226153724685"></p>
+<h1 id="Access-偏移注入"><a href="#Access-偏移注入" class="headerlink" title="Access-偏移注入"></a>Access-偏移注入</h1><p>admin.*&#x3D;&#x3D;admin.username,password…..from admin</p>
+<p>所以在联合注入时  ：select *from news where id&#x3D;1 union select 1,2,3,4,5,6,7,8,9,10(假设有十个字段，admin表中有三个字段)</p>
+<p>​                                     select   *from news where id&#x3D;1 union select 1,2,3,admin.*7,8,9,10</p>
+<p><img src="/../images/image-20231226150039747.png" alt="image-20231226150039747"></p>
+<p>偏移注入就是利用admin.*替换联合查询中的填充位进行联合查询，一个一个的尝试判断admin表中具体有几个字段从而写到联合查询中的语句中，通过admin。的偏移从而得到admin表中的数据</p>
+<p><img src="/../images/image-20231226151734635.png" alt="image-20231226151734635"></p>
+<p><img src="/../images/image-20231226151759048.png" alt="image-20231226151759048"></p>
+<p>偏移注入的限制就是要查询的表中的字段个数大于填充为的个数</p>
+<p><img src="/../images/image-20231226153000780.png" alt="image-20231226153000780"></p>
+<h1 id="MSSQL注入-反弹注入"><a href="#MSSQL注入-反弹注入" class="headerlink" title="MSSQL注入-反弹注入"></a>MSSQL注入-反弹注入</h1><h5 id="MSSQL注入-反弹注入使用场景"><a href="#MSSQL注入-反弹注入使用场景" class="headerlink" title="MSSQL注入-反弹注入使用场景"></a>MSSQL注入-反弹注入使用场景</h5><h6 id="什么是反弹注入"><a href="#什么是反弹注入" class="headerlink" title="什么是反弹注入"></a>什么是反弹注入</h6><p><img src="/../images/image-20231227202449987.png" alt="image-20231227202449987"></p>
+<p>反弹注入就是<strong>利用SQL SERVER的opendatasource () 函数，来将查询结果发送到另一个外网服务器的SQL SERVER数据库中</strong>。</p>
+<h6 id="了解一下mssql"><a href="#了解一下mssql" class="headerlink" title="了解一下mssql"></a>了解一下mssql</h6><p>其实mssql与mysql差不多，就是库名函数不同</p>
+<p><img src="/../images/image-20231227201613467.png" alt="image-20231227201613467"></p>
+<p><img src="/../images/image-20231227201753433.png" alt="image-20231227201753433"></p>
+<h5 id="快速搭建一个mssql环境"><a href="#快速搭建一个mssql环境" class="headerlink" title="快速搭建一个mssql环境"></a>快速搭建一个mssql环境</h5><h6 id="了解一下各种虚拟服务器"><a href="#了解一下各种虚拟服务器" class="headerlink" title="了解一下各种虚拟服务器"></a>了解一下各种虚拟服务器</h6><p><img src="/../images/image-20231227202301727.png" alt="image-20231227202301727"></p>
+<p><img src="/../images/image-20231227202319464.png"></p>
+<h6 id="在注册嫖服务器时-的小tips"><a href="#在注册嫖服务器时-的小tips" class="headerlink" title="在注册嫖服务器时 的小tips"></a>在注册嫖服务器时 的小tips</h6><p>十分钟邮箱（匿名邮箱）                   云短信</p>
+<p><img src="/../images/image-20231227202803632.png" alt="image-20231227202803632"></p>
+<p>利用这两个可以在注册时不使用自己真实的邮箱与手机号</p>
+<h6 id="连接数据库的方式"><a href="#连接数据库的方式" class="headerlink" title="连接数据库的方式"></a>连接数据库的方式</h6><p><img src="/../images/image-20231227203032369.png" alt="image-20231227203032369"></p>
+<p>连接数据库的软件（记得破解）</p>
+<p><img src="/../images/image-20231227203058760.png" alt="image-20231227203058760"></p>
+<p>简单设置一下</p>
+<p><img src="/../images/image-20231227203206110.png" alt="image-20231227203206110"></p>
+<p><img src="/../images/image-20231227203223579.png" alt="image-20231227203223579"></p>
+<h5 id="MSSSQL显错注入"><a href="#MSSSQL显错注入" class="headerlink" title="MSSSQL显错注入"></a>MSSSQL显错注入</h5><p>mssql显错注入与mysql有区别，所以需要稍微了解一下</p>
+<p><img src="/../images/image-20231227205442360.png" alt="image-20231227205442360"></p>
+<p>因为数据库不是mysql数据库，所有在判断显错位时需要判断字符类型，是数字型还是字符型</p>
+<p><img src="/../images/image-20231227205737629.png" alt="image-20231227205737629"></p>
+<p>但是因为database这个函数在mssql数据库里不存在，所以不能用这个，删了就行</p>
+<p><img src="/../images/image-20231227210129756.png" alt="image-20231227210129756"></p>
+<h5 id="MSSQL反弹注入语句解析"><a href="#MSSQL反弹注入语句解析" class="headerlink" title="MSSQL反弹注入语句解析"></a>MSSQL反弹注入语句解析</h5><p><img src="/../images/image-20231227210928304.png" alt="image-20231227210928304"></p>
+<h6 id="反弹注入的核心："><a href="#反弹注入的核心：" class="headerlink" title="反弹注入的核心："></a>反弹注入的核心：<img src="/../images/image-20231227210955351.png" alt="image-20231227210955351"></h6><img src="../images/image-20231227211856858.png" alt="image-20231227211856858" style="zoom:50%;" />
+
+<img src="../images/image-20231227211918418.png" alt="image-20231227211918418" style="zoom:50%;" />
+
+<p><img src="/../images/image-20231227212008098.png" alt="image-20231227212008098"></p>
+<p><img src="/../images/image-20231227212151609.png" alt="image-20231227212151609"></p>
+<h6 id="介绍一个堆叠注入："><a href="#介绍一个堆叠注入：" class="headerlink" title="介绍一个堆叠注入："></a>介绍一个堆叠注入：</h6><p>堆叠注入就是通过； 让原本无法同时执行的语句运行，用；将他们隔开就行</p>
+<p>例如select和insert函数不能一起执行</p>
+<p><img src="/../images/image-20231227212202684.png"></p>
+<h1 id="MYSQL注入-DNS注入"><a href="#MYSQL注入-DNS注入" class="headerlink" title="MYSQL注入-DNS注入"></a>MYSQL注入-DNS注入</h1><h5 id="DNS注入的使用场景"><a href="#DNS注入的使用场景" class="headerlink" title="DNS注入的使用场景"></a>DNS注入的使用场景</h5><p>​              在某些无法直接利用漏洞获得回显的情况下，但是目标可以发起请求，这个时候就可以通过DNS请求把想获得的数据外带出来。    对于sql盲注，常见的方法就是二分法去一个个猜，但是这样的方法麻烦不说，还很容易因为数据请求频繁导致被ban。  所以可以将select到的数据发送给一个url，利用dns解析产生的记录日志来查看数据。</p>
+<p><img src="/../images/image-20231228154038820.png" alt="image-20231228154038820"></p>
+<p>DNS:就是记录别人域名和ip的对应</p>
+<h5 id="DNSLOG的函数解析"><a href="#DNSLOG的函数解析" class="headerlink" title="DNSLOG的函数解析"></a>DNSLOG的函数解析</h5><p><img src="/../images/image-20231228154351738.png" alt="image-20231228154351738"></p>
+<p>这个函数在某些版本中不会默认开启，需要根据上图进行手动开启</p>
+<p><img src="/../images/image-20231228154923216.png" alt="image-20231228154923216"></p>
+<p>在写路径的时候要注意转义字符</p>
+<p>unc路径：unc路径就是网络共享的路径</p>
+<p><img src="/../images/image-20231228161551074.png" alt="image-20231228161551074"></p>
+<p><img src="/../images/image-20231228155808304.png" alt="image-20231228155808304"></p>
+<p><img src="/../images/image-20231228161243612.png" alt="image-20231228161243612"></p>
+<p>就是通过访问dnslog从而外带出来数据库名，表名等，就是访问后会留下访问数据日志，通过看这个从而得到数据库名等</p>
+<p><img src="/../images/image-20231228161307456.png" alt="image-20231228161307456"></p>
+<p><img src="/../images/image-20231228161729637.png" alt="image-20231228161729637"></p>
+<h6 id="小注："><a href="#小注：" class="headerlink" title="小注："></a>小注：<img src="/../images/image-20231228161805746.png" alt="image-20231228161805746"></h6><p>dns注入本质就是通过dnslog平台外带反映出数据从而获取信息</p>
+<h5 id="DNS注入的靶场"><a href="#DNS注入的靶场" class="headerlink" title="DNS注入的靶场"></a>DNS注入的靶场</h5><h6 id="浏览器安全"><a href="#浏览器安全" class="headerlink" title="浏览器安全"></a>浏览器安全</h6><p><img src="/../images/image-20231228212311923.png" alt="image-20231228212311923"></p>
+<p>利用apache的解析规则实现防火墙的绕过</p>
+<p><img src="/../images/image-20231228212354712.png" alt="image-20231228212354712"></p>
+<p><img src="/../images/image-20231228212415672.png" alt="image-20231228212415672"></p>
+<p><img src="/../images/image-20231231091432662.png" alt="image-20231231091432662"></p>
+<h1 id="SQL注入盲注"><a href="#SQL注入盲注" class="headerlink" title="SQL注入盲注"></a>SQL注入盲注</h1><p><img src="/../images/image-20231228150859396.png" alt="image-20231228150859396"></p>
+<h5 id="什么是盲注"><a href="#什么是盲注" class="headerlink" title="什么是盲注"></a>什么是盲注</h5><p>盲注：即在SQL注入过程中，SQL语句执行查询后，查询数据不能回显到前端页面中，我们需要使用一些特殊的方式来判断或尝试，这个过程成为盲注</p>
+<h5 id="盲注的类型"><a href="#盲注的类型" class="headerlink" title="盲注的类型"></a>盲注的类型</h5><p>SQL 注入可以分为普通注入和盲注。当注入的页面无法直接显示数据内容，就只能靠盲注来猜解。盲注又可以具体分为布尔型盲注和延时型盲注。</p>
+<p>　　布尔型盲注是指注入页面中没有直接显示数据内容，但会显示输出的结果对还是错，查询的数据有还是没有。比如输入的 ID 值查询到有该记录，就在页面上显示该记录存在；如果输入的 ID  值不存在，页面上就显示记录不存在，除此之外没有任何更多的信息，我们通过注入构造的任何 SQL  语句也只能返回存在或者不存在两种结果。通过返回结果的对或错来判断构造的 SQL 语句是否成立，这种盲注方式就是布尔型盲注。</p>
+<p>　　对于某些 SQL 注入页面，可能页面中任何信息都不返回，甚至连记录是否存在都不告诉你，这时布尔型盲注也就无效了。但是基于 sleep()  函数可以实现延时查询，我们可以构造一个判断语法，如果返回结果为真，则延时 5 秒再进行查询操作。那么我们就可以通过观察提交 SQL  注入语句后，页面响应是否有延时卡顿，来判断我们构造的 SQL 语句是否成立。这种盲注方式就称为延时型盲注。</p>
+<h5 id="盲注的步骤"><a href="#盲注的步骤" class="headerlink" title="盲注的步骤"></a>盲注的步骤</h5><p>具体步骤参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qiushuo/p/17485659.html">https://www.cnblogs.com/qiushuo/p/17485659.html</a></p>
+<p>ascii编码网站：<a target="_blank" rel="noopener" href="https://c.biancheng.net/c/ascii/">https://c.biancheng.net/c/ascii/</a></p>
+<p>盲注的具体操作就是一步一步的根据页面反馈给你的结果，先判断字符串的长短再利用ascii编码一个一个字符的查找从而确定库名表名等，就是一遍一遍的试错，从而达到最后目的。</p>
+<p><img src="/../images/image-20231228150445036.png" alt="image-20231228150445036"></p>
+<h1 id="Oracle注入-报错注入"><a href="#Oracle注入-报错注入" class="headerlink" title="Oracle注入-报错注入"></a>Oracle注入-报错注入</h1><h5 id="Oracle-数据库"><a href="#Oracle-数据库" class="headerlink" title="Oracle 数据库"></a>Oracle 数据库</h5><h6 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h6><p>oracle数据库很强大，也很复杂</p>
+<p><img src="/../images/image-20231231094801082.png" alt="image-20231231094801082"></p>
+<p><img src="/../images/image-20231231095504814.png" alt="image-20231231095504814"></p>
+<p>在线搭建的oracle数据库，可以自己在上面写oracle 的语句进行学习</p>
+<h6 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h6><p><img src="/../images/image-20231231100308720.png" alt="image-20231231100308720"></p>
+<p>oracle数据库很死板，语法很讲究格式，所以必须很严谨。</p>
+<p>在oracle数据库里存在一个虚表-dual，它实际上没有任何意义，只是为了满足oracle语法格式而存在的一个表单</p>
+<p>例如：<img src="C:/Users/31717/Desktop/笔记/images/image-20231231100159053.png" alt="image-20231231100159053" style="zoom:33%;" /><img src="../images/image-20231231100251131.png" alt="image-20231231100251131" style="zoom:25%;" /></p>
+<p><img src="/../images/image-20231231194525227.png" alt="image-20231231194525227"></p>
+<img src="../images/image-20231231201019324.png" alt="image-20231231201019324" style="zoom:33%;" />
+
+<p>利用这个函数来获得前几条数据库里的内容：&lt;3就是前两条    1就是第一条</p>
+<p>oracle来实现limit的功能</p>
+<p><img src="/../images/image-20231231202206818.png" alt="image-20231231202206818"></p>
+<p><img src="/../images/image-20231231202233846.png" alt="image-20231231202233846"></p>
+<p>时间戳的小概念<img src="/../images/image-20231231202710087.png" alt="image-20231231202710087"></p>
+<h5 id="Oracle的报错注入"><a href="#Oracle的报错注入" class="headerlink" title="Oracle的报错注入"></a>Oracle的报错注入</h5><p>这里强调一下书写报错注入的格式问题，必须要有1&#x3D;…..</p>
+<p><img src="/../images/image-20231231203322596.png" alt="image-20231231203322596"></p>
+<p><img src="/../images/image-20231231203858444.png" alt="image-20231231203858444"></p>
+<h5 id="Oracle中数据的类型问题"><a href="#Oracle中数据的类型问题" class="headerlink" title="Oracle中数据的类型问题"></a>Oracle中数据的类型问题</h5><p>在oracle数据库中存在非常多复杂的数据类型，可以在网上学习转化方式。</p>
+<p>例：<img src="/../images/image-20231231204457171.png" alt="image-20231231204457171"></p>
+<p><img src="/../images/image-20231231204516713.png" alt="image-20231231204516713"></p>
+<p>可以通过转化数据类型，实现报错注入</p>
+<h1 id="SQLMAP绕过WAF脚本编写"><a href="#SQLMAP绕过WAF脚本编写" class="headerlink" title="SQLMAP绕过WAF脚本编写"></a>SQLMAP绕过WAF脚本编写</h1><h5 id="WAF的介绍"><a href="#WAF的介绍" class="headerlink" title="WAF的介绍"></a>WAF的介绍</h5><p><img src="/../images/image-20240104210039897.png" alt="image-20240104210039897"></p>
+<p>WAF就是一种网站的防护系统，本质上是正则表达式</p>
+<p><img src="/../images/image-20240104210155151.png" alt="image-20240104210155151"></p>
+<h5 id="常见的绕waf的方法"><a href="#常见的绕waf的方法" class="headerlink" title="常见的绕waf的方法"></a>常见的绕waf的方法</h5><p><img src="/../images/image-20240204125413130.png" alt="image-20240204125413130"></p>
+<h6 id="重点强调一下注释绕过的手段"><a href="#重点强调一下注释绕过的手段" class="headerlink" title="重点强调一下注释绕过的手段"></a>重点强调一下注释绕过的手段</h6><p>waf有时会认为注释里面的东西是安全的所以不进行过滤</p>
+<p><img src="/../images/image-20240204131318556.png" alt="image-20240204131318556"></p>
+<h6 id="垃圾数据填充的手段"><a href="#垃圾数据填充的手段" class="headerlink" title="垃圾数据填充的手段"></a>垃圾数据填充的手段</h6><p><img src="/../images/image-20240204132856064.png" alt="image-20240204132856064"></p>
+<p><img src="/../images/image-20240204135715779.png" alt="image-20240204135715779"></p>
+<p>在绕过waf时发现被wa拦截了，可以根据报错页面在网上找是哪个waf</p>
+<p><img src="/../images/image-20240204130851039.png" alt="image-20240204130851039">一个解码网站，常见的编码都可以解</p>
+<h5 id="SQLMAP绕WAF脚本"><a href="#SQLMAP绕WAF脚本" class="headerlink" title="SQLMAP绕WAF脚本"></a>SQLMAP绕WAF脚本</h5><p><img src="/../images/image-20240204141143419.png" alt="image-20240204141143419"></p>
+<p><img src="/../images/image-20240204142310965.png" alt="image-20240204142310965"></p>
+<p>举个例子，在sqlmap脚本中的payload代表的是原来sqlmap要执行的代码，我们在python脚本中选择一个base64函数，对payload进行加密，就得到了一个绕过脚本，所以绕过脚本的本质就是替换</p>
+<img src="../images/image-20240204142335912.png" alt="image-20240204142335912" style="zoom:67%;" />
+
+<h1 id="XSS的原理和解剖"><a href="#XSS的原理和解剖" class="headerlink" title="XSS的原理和解剖"></a>XSS的原理和解剖</h1><h5 id="xss的原理和特性"><a href="#xss的原理和特性" class="headerlink" title="xss的原理和特性"></a>xss的原理和特性</h5><p><img src="/../images/1653879505_629432d153872d8c73de4.png" alt="img"></p>
+<p>XSS：跨站脚本攻击（前端注入）</p>
+<p><img src="/../images/image-20240205111833736.png" alt="image-20240205111833736"></p>
+<p>xss偷cookie就是通过document.cookieL来获取cookie，用ajax来发送cookie，ajax就是在不刷新页面的情况下做出回应变化</p>
+<p><img src="/../images/image-20240205134823146.png" alt="image-20240205134823146"></p>
+<p><img src="/../images/image-20240205134618579.png" alt="image-20240205134618579">				</p>
+<h5 id="xss的类型"><a href="#xss的类型" class="headerlink" title="xss的类型"></a>xss的类型</h5><p><img src="/../images/image-20240205142515030.png" alt="image-20240205142515030"></p>
+<p><img src="/../images/image-20240215105103823.png" alt="image-20240215105103823"></p>
+<p><img src="/../images/image-20240215102429288.png" alt="image-20240215102429288"></p>
+<p>反射型：传参里面有恶意语句才会</p>
+<p>存储型：传参里面没有恶意语句也会执行</p>
+<h6 id="同源策略："><a href="#同源策略：" class="headerlink" title="同源策略："></a>同源策略：<img src="/../images/image-20240215112244379.png" alt="image-20240215112244379"></h6><h6 id="一次会话："><a href="#一次会话：" class="headerlink" title="一次会话："></a>一次会话：<img src="/../images/image-20240215114520951.png" alt="image-20240215114520951"></h6><h5 id="xss语句"><a href="#xss语句" class="headerlink" title="xss语句"></a>xss语句</h5><p> <img src="/../images/image-20240215155402547.png" alt="image-20240215155402547"></p>
+<p>事件就是当XXX发生时，XXX发生 </p>
+<p><img src="/../images/image-20240215160829625.png" alt="image-20240215160829625"></p>
+<h1 id="存储型xss"><a href="#存储型xss" class="headerlink" title="存储型xss"></a>存储型xss</h1><p><img src="/../images/image-20240216083217632.png" alt="image-20240216083217632"></p>
+<img src="../images/image-20240216083410701.png" alt="image-20240216083410701" style="zoom:33%;" />
+
+<p>​	<img src="/../images/image-20240216085031142.png" alt="image-20240216085031142"></p>
+<h1 id="Dom-Based-xss"><a href="#Dom-Based-xss" class="headerlink" title="Dom Based xss"></a>Dom Based xss</h1><h5 id="xss的防御手段"><a href="#xss的防御手段" class="headerlink" title="xss的防御手段"></a>xss的防御手段<img src="/../images/image-20240216144433908.png" alt="image-20240216144433908"></h5><h5 id="什么是dombaesd-xss"><a href="#什么是dombaesd-xss" class="headerlink" title="什么是dombaesd xss"></a>什么是dombaesd xss</h5><p><img src="/../images/image-20240216144529401.png" alt="image-20240216144529401"></p>
+<p><img src="/../images/image-20240217085606849.png" alt="image-20240217085606849"></p>
+<p>本质上就是因为通过js的加工才产生的xss的漏洞，通过js才产生的漏洞</p>
+<h6 id="什么是dom"><a href="#什么是dom" class="headerlink" title="什么是dom"></a>什么是dom</h6><p><img src="/../images/image-20240216144603228.png" alt="image-20240216144603228"></p>
+<p><img src="/../images/image-20240216144716698.png" alt="image-20240216144716698"></p>
+<h6 id="document对象属性"><a href="#document对象属性" class="headerlink" title="document对象属性"></a>document对象属性</h6><p><img src="/../images/image-20240216145117251.png" alt="image-20240216145117251"></p>
+<h5 id="伪静态"><a href="#伪静态" class="headerlink" title="伪静态"></a>伪静态</h5><p><img src="/../images/image-20240216145652875.png" alt="image-20240216145652875"></p>
+<p>用来区分伪静态的方法：</p>
+<p><img src="/../images/image-20240216145702571.png" alt="image-20240216145702571"></p>
+<p>页面的时间不改变的就是静态，要是随着改变就是动态（伪静态）</p>
+<p><img src="/../images/image-20240217082924988.png" alt="image-20240217082924988"></p>
+<p>注意:有些静态页面会用动态页面加载，用last’modified会判断为动态，不要死磕</p>
+<p>不经过后端的xss没有历史记录</p>
+<p><img src="/../images/image-20240217083540604.png" alt="image-20240217083540604"></p>
+<h1 id="跨站请求伪造——CSRF"><a href="#跨站请求伪造——CSRF" class="headerlink" title="跨站请求伪造——CSRF"></a>跨站请求伪造——CSRF</h1><h5 id="什么是CSRF"><a href="#什么是CSRF" class="headerlink" title="什么是CSRF"></a>什么是CSRF</h5><p>CSRF是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。可以简单的理解为：攻击者可以盗用你的登陆信息，以你的身份模拟发送各种请求对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以你的名义发送邮件、发消息，盗取你的账号，添加系统管理员，甚至于购买商品、虚拟货币转账等。攻击者只要借助少许的社会工程学的诡计，例如通过 QQ 等聊天软件发送的链接（有些还伪装成短域名，用户无法分辨），攻击者就能迫使 Web 应用的用户去执行攻击者预设的操作</p>
+<p><img src="/../images/image-20240217145612790.png" alt="image-20240217145612790"></p>
+<h6 id="csrf的条件"><a href="#csrf的条件" class="headerlink" title="csrf的条件"></a>csrf的条件</h6><p><img src="/../images/image-20240217152828183.png" alt="image-20240217152828183"></p>
+<p><img src="/../images/image-20240217154107987.png" alt="image-20240217154107987"></p>
+<h6 id="csrf与钓鱼网站"><a href="#csrf与钓鱼网站" class="headerlink" title="csrf与钓鱼网站"></a>csrf与钓鱼网站</h6><p>钓鱼就是黑客做一个假网站让你输入账号密码</p>
+<p>csrf是打开黑客的网站从而可以让黑客利用你的cookie去操作，没法得到cookie</p>
+<p><img src="/../images/image-20240217153421987.png" alt="image-20240217153421987"></p>
+<h6 id="防御csrf"><a href="#防御csrf" class="headerlink" title="防御csrf"></a>防御csrf</h6><p>可以开启无痕浏览或者隐私模式</p>
+<p><img src="/../images/image-20240217153415039.png" alt="image-20240217153415039"></p>
+<h1 id="文件上传漏洞-解析、验证、伪造"><a href="#文件上传漏洞-解析、验证、伪造" class="headerlink" title="文件上传漏洞 解析、验证、伪造"></a>文件上传漏洞 解析、验证、伪造</h1><h5 id="什么是文件上传漏洞"><a href="#什么是文件上传漏洞" class="headerlink" title="什么是文件上传漏洞"></a>什么是文件上传漏洞</h5><p>文件上传是一种功能并不是本身并不是漏洞，但是如果任意的文件都能实现上传就是漏洞</p>
+<p><img src="/../images/image-20240218112911174.png" alt="image-20240218112911174"></p>
+<p><img src="/../images/image-20240218113009038.png" alt="image-20240218113009038"></p>
+<h5 id="文件上传的防护"><a href="#文件上传的防护" class="headerlink" title="文件上传的防护"></a>文件上传的防护</h5><p><img src="/../images/image-20240218113228072.png" alt="image-20240218113228072"></p>
+<p>在客户端检测上，我们只需要对浏览器进行抓包然后删掉相关的js代码就能实现任意文件上传</p>
+<p><img src="/../images/image-20240218113400888.png" alt="image-20240218113400888"></p>
+<h5 id="黑名单的绕过"><a href="#黑名单的绕过" class="headerlink" title="黑名单的绕过"></a>黑名单的绕过</h5><ol>
+<li></li>
+</ol>
+<p><img src="/../images/image-20240218113654830.png" alt="image-20240218113654830"></p>
+<p>php等后缀可以用其他的进行代替，我么可以多次尝试其他的进行绕过</p>
+<p><img src="/../images/image-20240218143253028.png" alt="image-20240218143253028"></p>
+<p>2.类型检测</p>
+<p><img src="/../images/image-20240218142748932.png" alt="image-20240218142748932"></p>
+<p>获取文件类型的代码</p>
+<p><img src="/../images/image-20240218142840450.png" alt="image-20240218142840450"></p>
+<p>在操作时我们只需要将代码改成我们需要的文件类型即可</p>
+<p><img src="/../images/image-20240218142924284.png" alt="image-20240218142924284"></p>
+<p><img src="/../images/image-20240218142933213.png" alt="image-20240218142933213"></p>
+<ol start="3">
+<li></li>
+</ol>
+<p><img src="/../images/image-20240218143413326.png" alt="image-20240218143413326"></p>
+<p><img src="/../images/image-20240218143426544.png" alt="image-20240218143426544"></p>
+<p>4.其他方式</p>
+<p><img src="/../images/image-20240218154051437.png" alt="image-20240218154051437"></p>
+<h5 id="白名单的绕过"><a href="#白名单的绕过" class="headerlink" title="白名单的绕过"></a>白名单的绕过</h5><h6 id="oo截断"><a href="#oo截断" class="headerlink" title="oo截断"></a>oo截断</h6><p><img src="/../images/image-20240220085947416.png" alt="image-20240220085947416"></p>
+<img src="../images/image-20240220090410538.png" alt="image-20240220090410538" style="zoom: 50%;" />
+
+<p>oo后面的字符函数就认为他不存在了，但是白名单只看最后的后缀</p>
+<p>所以存在oo截断漏洞</p>
+<p>在get传参中可以直接修改burp的数据包，在文件名后面直接加上%oo，从而实现oo截断</p>
+<p><img src="/../images/image-20240220091250588.png" alt="image-20240220091250588"></p>
+<p><img src="/../images/image-20240220091304322.png" alt="image-20240220091304322"></p>
+<p>在post传参中，由于post传参没有进行url编码，所以%oo不能直接使用，我们可以选择在十六进制中修改，使其出现oo截断</p>
+<p><img src="/../images/image-20240220091436570.png" alt="image-20240220091436570"></p>
+<p><img src="/../images/image-20240220091457483.png" alt="image-20240220091457483"></p>
+<p><img src="/../images/image-20240220091527012.png" alt="image-20240220091527012"></p>
+<p><img src="/../images/image-20240220091542422.png" alt="image-20240220091542422"></p>
+<p>文件上传流程</p>
+<p><img src="/../images/image-20240220085831315.png" alt="image-20240220085831315"></p>
+<h6 id="图片码"><a href="#图片码" class="headerlink" title="图片码"></a>图片码</h6><p>我们可以用命令行指令将php木马代码与jdg图片结合成一个文件，从而达到打开该文件是图片，但是图片里有php代码的效果</p>
+<p><img src="/../images/image-20240220094131969.png" alt="image-20240220094131969"></p>
+<p><img src="/../images/image-20240220094200110.png" alt="image-20240220094200110"></p>
+<p><img src="/../images/image-20240220094238661.png" alt="image-20240220094238661"></p>
+<p>注意：上传的图片码可能存在图片太大，或者图片与代码不兼容，可以多换几张图片试试，找到一个合适的图片码就可以长期使用了</p>
+<h6 id="二次渲染："><a href="#二次渲染：" class="headerlink" title="二次渲染："></a>二次渲染：</h6><p>当图片上传之后，网站会对图片进行二次渲染，可能会使图片中的代码消失，我们可以用gif图片在头部数据上写上一句话来绕过二次渲染，因为二次渲染对gif的头部没有影响</p>
+<p>条件竞争：</p>
+<p><img src="/../images/image-20240220103520296.png" alt="image-20240220103520296"></p>
+<p>简单来说，条件竞争就是我们抢先在网站检测删除掉我们php代码之前，我们先执行php的代码，也就说只要手速快，一遍抓包拦截，一边跑包执行进行条件竞争，执行我们的代码</p>
+<h5 id="解析漏洞"><a href="#解析漏洞" class="headerlink" title="解析漏洞"></a>解析漏洞</h5><p><img src="/../images/image-20240220110115359.png" alt="image-20240220110115359"></p>
+<p><img src="/../images/image-20240220110048652.png" alt="image-20240220110048652"></p>
+<h6 id="iis6-0-（1）"><a href="#iis6-0-（1）" class="headerlink" title="iis6.0 （1）"></a>iis6.0 （1）</h6><p>我们可以利用解析漏洞一，将扩展中添加自己使用的文件名称</p>
+<h6 id=""><a href="#" class="headerlink" title=""></a><img src="/../images/image-20240220110433270.png" alt="image-20240220110433270"></h6><h6 id="iis6-0（2）"><a href="#iis6-0（2）" class="headerlink" title="iis6.0（2）"></a>iis6.0（2）</h6><p>就是一种是用分号截断，一种是在asp文件夹里放置txt文件，也会被当作asp文件，但是前提是我们有建立文件夹的权限</p>
+<p><img src="/../images/image-20240220113925191.png" alt="image-20240220113925191"></p>
+<img src="../images/image-20240220141846390.png" alt="image-20240220141846390" style="zoom:50%;" />
+
+<h6 id="CGI漏洞"><a href="#CGI漏洞" class="headerlink" title="CGI漏洞"></a>CGI漏洞</h6><p>在图片地址后面之间加上&#x2F;.php如果发现有乱码则说明存在漏洞（这是php特有的漏洞）</p>
+<p><img src="/../images/image-20240220142912492.png" alt="image-20240220142912492"></p>
+<p><img src="/../images/image-20240220142335645.png" alt="image-20240220142335645"></p>
+<h1 id="服务器端请求伪造"><a href="#服务器端请求伪造" class="headerlink" title="服务器端请求伪造"></a>服务器端请求伪造</h1><h5 id="ssrf是什么"><a href="#ssrf是什么" class="headerlink" title="ssrf是什么"></a>ssrf是什么</h5><p><img src="/../images/image-20240220160648631.png" alt="image-20240220160648631"></p>
+<p><img src="/../images/image-20240221100056224.png" alt="image-20240221100056224"></p>
+<p><img src="/../images/image-20240221095638824.png" alt="image-20240221095638824"></p>
+<h6 id="dict探测端口"><a href="#dict探测端口" class="headerlink" title="dict探测端口"></a>dict探测端口</h6><p>可以用这种方式探测开放的端口，如果端口未开放则会加载一小段时间，如果端口开放则会立即返回信息</p>
+<h6 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="/../images/image-20240221095751843.png" alt="image-20240221095751843"></h6><h5 id="ssrf攻击"><a href="#ssrf攻击" class="headerlink" title="ssrf攻击"></a>ssrf攻击</h5><p>在测试是否存在漏洞时可以用dnslog生成一个域名访问一下试试能不能访问通</p>
+<p><img src="/../images/image-20240221104003900.png" alt="image-20240221104003900"></p>
+<p><img src="/../images/image-20240221104232490.png" alt="image-20240221104232490"></p>
+<h5 id="ssrf靶场"><a href="#ssrf靶场" class="headerlink" title="ssrf靶场"></a>ssrf靶场</h5><p><img src="/../images/image-20240221104052140.png" alt="image-20240221104052140"></p>
+<p><img src="/../images/image-20240221104126839.png" alt="image-20240221104126839"></p>
+<p><img src="/../images/image-20240221104201669.png" alt="image-20240221104201669"></p>
+<h5 id="扩展内容"><a href="#扩展内容" class="headerlink" title="扩展内容"></a>扩展内容</h5><p><img src="/../images/image-20240221103803265.png" alt="image-20240221103803265"></p>
+<p><img src="/../images/image-20240221103816916.png" alt="image-20240221103816916"></p>
+<h1 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h1><h5 id="什么是xxe"><a href="#什么是xxe" class="headerlink" title="什么是xxe"></a>什么是xxe</h5><p><img src="/../images/image-20240221151736378.png" alt="image-20240221151736378"></p>
+<h5 id="什么是xml"><a href="#什么是xml" class="headerlink" title="什么是xml"></a>什么是xml</h5><p>简单理解xml就是储存数据的</p>
+<p><img src="/../images/image-20240221151714414.png" alt="image-20240221151714414"></p>
+<p>DTD</p>
+<p><img src="/../images/image-20240221151927148.png" alt="image-20240221151927148"></p>
+<p>实体可以理解为变量（test），通过file读取文件赋值给test，然后在scan里面调用，具体使用只需要修改一下相调用的协议</p>
+<p><img src="/../images/image-20240221153849773.png" alt="image-20240221153849773"></p>
+<h5 id="xxe原理"><a href="#xxe原理" class="headerlink" title="xxe原理"></a>xxe原理</h5><p><img src="/../images/image-20240221154132720.png" alt="image-20240221154132720"></p>
+<p><img src="/../images/image-20240221160035007.png" alt="image-20240221160035007"></p>
+<h6 id="simpleXML函数"><a href="#simpleXML函数" class="headerlink" title="simpleXML函数"></a>simpleXML函数</h6><p>核心是读取（）当作xml执行</p>
+<p><img src="/../images/image-20240221154310580.png" alt="image-20240221154310580"></p>
+<p>只有实体部分是必填项，其他的是选填，一般不要改动</p>
+<p><img src="/../images/image-20240221154548459.png" alt="image-20240221154548459"></p>
+<h6 id="xxe的回显"><a href="#xxe的回显" class="headerlink" title="xxe的回显"></a>xxe的回显</h6><p><img src="/../images/image-20240221164312596.png" alt="image-20240221164312596"></p>
+<h5 id="寻找xxe的方法"><a href="#寻找xxe的方法" class="headerlink" title="寻找xxe的方法"></a>寻找xxe的方法</h5><p>一般很难遇到第一种情况</p>
+<p><img src="/../images/image-20240221160411355.png" alt="image-20240221160411355"></p>
+<h6 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h6><p>代码审计可以用审计工具帮助进行</p>
+<p><img src="/../images/image-20240221160902920.png" alt="image-20240221160902920"></p>
+<p><img src="/../images/image-20240221161416396.png" alt="image-20240221161416396"></p>
+<h5 id="修复xxe"><a href="#修复xxe" class="headerlink" title="修复xxe"></a>修复xxe</h5><p><img src="/../images/image-20240221163747024.png" alt="image-20240221163747024"></p>
+<p><img src="/../images/image-20240221164142326.png" alt="image-20240221164142326"></p>
+<h1 id="反序列化漏洞"><a href="#反序列化漏洞" class="headerlink" title="反序列化漏洞"></a>反序列化漏洞</h1><h5 id="什么是序列化"><a href="#什么是序列化" class="headerlink" title="什么是序列化"></a>什么是序列化</h5><p><img src="/../images/image-20240223091058646.png" alt="image-20240223091058646"></p>
+<h6 id="序列化代码"><a href="#序列化代码" class="headerlink" title="序列化代码"></a>序列化代码</h6><p><img src="/../images/image-20240223092937778.png" alt="image-20240223092937778"></p>
+<p><img src="/../images/image-20240223093145116.png" alt="image-20240223093145116"></p>
+<p><img src="/../images/image-20240223093213253.png" alt="image-20240223093213253"></p>
+<p>反序列化代码</p>
+<p><img src="/../images/image-20240223093409990.png" alt="image-20240223093409990"></p>
+<p><img src="/../images/image-20240223093430561.png" alt="image-20240223093430561"></p>
+<p>可以通过修改反序列化的值来输出想要得到的值</p>
+<h5 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a>魔术方法</h5><p>就是会自动调用的函数</p>
+<p><img src="/../images/image-20240223094452177.png" alt="image-20240223094452177"></p>
+<h6 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h6><p><img src="/../images/image-20240223105702501.png" alt="image-20240223105702501"></p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a></h1><h1 id="本地包含与远程包含"><a href="#本地包含与远程包含" class="headerlink" title="本地包含与远程包含"></a>本地包含与远程包含</h1><h5 id="什么是文件包含漏洞"><a href="#什么是文件包含漏洞" class="headerlink" title="什么是文件包含漏洞"></a>什么是文件包含漏洞</h5><h6 id="什么是文件包含"><a href="#什么是文件包含" class="headerlink" title="什么是文件包含"></a>什么是文件包含</h6><p>文件包含就是引用其他文件对自己工程进行加工，实现效果 ，其实就是通过引用进行复制粘贴</p>
+<p><img src="/../images/image-20240222164423640.png" alt="image-20240222164423640"></p>
+<h6 id="文件包含的函数"><a href="#文件包含的函数" class="headerlink" title="文件包含的函数"></a>文件包含的函数</h6><p><img src="/../images/image-20240222165715974.png" alt="image-20240222165715974"></p>
+<p><img src="/../images/image-20240222165751530.png" alt="image-20240222165751530"></p>
+<p><img src="/../images/image-20240222165823323.png" alt="image-20240222165823323"></p>
+<p><img src="/../images/image-20240222170022526.png" alt="image-20240222170022526"></p>
+<p>就是每一文件只能引用，这个函数只检测他上面执行过几次，他下面的还会执行</p>
+<h6 id="文件包含不在乎后缀"><a href="#文件包含不在乎后缀" class="headerlink" title="文件包含不在乎后缀"></a>文件包含不在乎后缀</h6><p>只要有文件包含，那么被包含的文件就一定会执行</p>
+<h6 id="文件包含的分类"><a href="#文件包含的分类" class="headerlink" title="文件包含的分类"></a>文件包含的分类</h6><p>本地文件包含就是只能包含本地地址上的文件</p>
+<p>远程文件包含可以包含在其他地方的文件</p>
+<p>远程文件包含需要修改配置才能进行，默认情况下是关闭的</p>
+<p>例如：<img src="/../images/image-20240222171551835.png" alt="image-20240222171551835"></p>
+<p><img src="/../images/image-20240222171759259.png" alt="image-20240222171759259"></p>
+<h5 id="小知识"><a href="#小知识" class="headerlink" title="小知识"></a>小知识</h5><p><img src="/../images/image-20240222202233630.png" alt="image-20240222202233630"></p>
+<h5 id="phpmyadmin"><a href="#phpmyadmin" class="headerlink" title="phpmyadmin"></a>phpmyadmin</h5><p><img src="/../images/image-20240222202056287.png" alt="image-20240222202056287"></p>
+<p> 通过分析phpmuadmin的源码，发现漏洞进行文件包含</p>
+<p><img src="/../images/image-20240222202614881.png" alt="image-20240222202614881"></p>
+<p>然后通过phpmyadmin的表结构上传一句话木马拿下webshell</p>
+<p><img src="/../images/image-20240222203047301.png" alt="image-20240222203047301"></p>
+<h1 id="变量覆盖"><a href="#变量覆盖" class="headerlink" title="变量覆盖"></a>变量覆盖</h1><h5 id="什么是变量覆盖"><a href="#什么是变量覆盖" class="headerlink" title="什么是变量覆盖"></a>什么是变量覆盖</h5><p>变量覆盖就是指你的后一个变量覆盖了前一个变量的值</p>
+<p><img src="/../images/image-20240223154049419.png" alt="image-20240223154049419"></p>
+<h5 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h5><h6 id="extract"><a href="#extract" class="headerlink" title="extract"></a>extract</h6><p>把数组变成变量</p>
+<p><img src="/../images/image-20240223154123113.png" alt="image-20240223154123113"></p>
+<h6 id="parse-str"><a href="#parse-str" class="headerlink" title="parse_str()"></a>parse_str()</h6><p>将字符串变成变量</p>
+<p><img src="/../images/image-20240223154322828.png" alt="image-20240223154322828"></p>
+<h6 id="-3"><a href="#-3" class="headerlink" title="$$"></a>$$</h6><p>把传参变成变量</p>
+<p><img src="/../images/image-20240223154620304.png" alt="image-20240223154620304"></p>
+<p><img src="/../images/image-20240223154831785.png" alt="image-20240223154831785"></p>
+<h6 id="键值分离"><a href="#键值分离" class="headerlink" title="键值分离"></a>键值分离</h6><p>将传参的键和值分离开，关键是&#x3D;&gt;</p>
+<p><img src="/../images/image-20240223155010700.png" alt="image-20240223155010700"></p>
+<h6 id="数组遍历"><a href="#数组遍历" class="headerlink" title="数组遍历"></a>数组遍历</h6><p>foreach         as</p>
+<p><img src="/../images/image-20240223155114909.png" alt="image-20240223155114909"></p>
+<h5 id="session"><a href="#session" class="headerlink" title="session"></a>session</h5><p>可以直接通过变量覆盖的方式,设置session使得我们不需要输账号密码就能直接登录</p>
+<p><img src="/../images/image-20240223160609765.png" alt="image-20240223160609765"></p>
+<p><img src="/../images/image-20240223161119741.png" alt="image-20240223161119741"></p>
+<h1 id="代码执行漏洞"><a href="#代码执行漏洞" class="headerlink" title="代码执行漏洞"></a>代码执行漏洞</h1><h5 id="代码执行漏洞原理"><a href="#代码执行漏洞原理" class="headerlink" title="代码执行漏洞原理"></a>代码执行漏洞原理</h5><p><img src="/../images/image-20240224105323379.png" alt="image-20240224105323379"></p>
+<h5 id="代码执行函数"><a href="#代码执行函数" class="headerlink" title="代码执行函数"></a>代码执行函数</h5><h6 id="disable-function"><a href="#disable-function" class="headerlink" title="disable function"></a>disable function</h6><p><img src="/../images/image-20240224111958013.png" alt="image-20240224111958013"></p>
+<p>打开配置文件</p>
+<img src="../images/image-20240224112033336.png" alt="image-20240224112033336" style="zoom:50%;" />
+
+<p>找到disable_ function 在后面写什么函数，什么函数就会被禁</p>
+<p><img src="/../images/image-20240224112055978.png" alt="image-20240224112055978"></p>
+<h6 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h6><p>eval不是一个函数，他不会被disable function禁用</p>
+<p><img src="/../images/image-20240224111803365.png" alt="image-20240224111803365"></p>
+<p><img src="/../images/image-20240224113039097.png" alt="image-20240224113039097"></p>
+<p><img src="/../images/image-20240224112938620.png" alt="image-20240224112938620"></p>
+<p><img src="/../images/image-20240224113612024.png" alt="image-20240224113612024"></p>
+<p><img src="/../images/image-20240224115558507.png" alt="image-20240224115558507"> </p>
+<p><img src="/../images/image-20240224145905218.png" alt="image-20240224145905218"></p>
+<h6 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h6><p><img src="/../images/image-20240224150040564.png" alt="image-20240224150040564"></p>
+<h1 id="命令执行漏洞"><a href="#命令执行漏洞" class="headerlink" title="命令执行漏洞"></a>命令执行漏洞</h1><h5 id="命令执行漏洞的原理"><a href="#命令执行漏洞的原理" class="headerlink" title="命令执行漏洞的原理"></a>命令执行漏洞的原理</h5><p><img src="/../images/image-20240224165818059.png" alt="image-20240224165818059"></p>
+<p><img src="/../images/image-20240224165835251.png" alt="image-20240224165835251"></p>
+<h5 id="命令执行的函数"><a href="#命令执行的函数" class="headerlink" title="命令执行的函数"></a>命令执行的函数</h5><h6 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h6><p><img src="/../images/image-20240224173059464.png" alt="image-20240224173059464"></p>
+<p><img src="/../images/image-20240224170551397.png" alt="image-20240224170551397"></p>
+<p><img src="/../images/image-20240224170523412.png" alt="image-20240224170523412"></p>
+<p><img src="/../images/image-20240224170735572.png" alt="image-20240224170735572"></p>
+<p><img src="/../images/image-20240224170505864.png" alt="image-20240224170505864"></p>
+<p><img src="/../images/image-20240224172926821.png" alt="image-20240224172926821"></p>
+<h1 id="验证码绕过密码找回漏洞"><a href="#验证码绕过密码找回漏洞" class="headerlink" title="验证码绕过密码找回漏洞"></a>验证码绕过密码找回漏洞</h1><h5 id="验证码作用"><a href="#验证码作用" class="headerlink" title="验证码作用"></a>验证码作用</h5><p><img src="/../images/image-20240225102020913.png" alt="image-20240225102020913"></p>
+<p><img src="/../images/image-20240225090932921.png" alt="image-20240225090932921"></p>
+<h5 id="验证码绕过"><a href="#验证码绕过" class="headerlink" title="验证码绕过"></a>验证码绕过</h5><p><img src="/../images/image-20240225091809939.png" alt="image-20240225091809939"></p>
+<p><img src="/../images/image-20240225100314206.png" alt="image-20240225100314206"></p>
+<p><img src="/../images/image-20240225100305526.png" alt="image-20240225100305526"></p>
+<h5 id="密码找回漏洞"><a href="#密码找回漏洞" class="headerlink" title="密码找回漏洞"></a>密码找回漏洞</h5><p><img src="/../images/image-20240225113055439.png" alt="image-20240225113055439"></p>
+<h1 id="平行越权-垂直越权"><a href="#平行越权-垂直越权" class="headerlink" title="平行越权 垂直越权"></a>平行越权 垂直越权</h1><h5 id="什么是越权"><a href="#什么是越权" class="headerlink" title="什么是越权"></a>什么是越权</h5><p><img src="/../images/image-20240225165142411.png" alt="image-20240225165142411"></p>
+<p><img src="/../images/image-20240225165519457.png" alt="image-20240225165519457"></p>
+<p><img src="/../images/image-20240225165849882.png" alt="image-20240225165849882"></p>
+<p><img src="/../images/image-20240225203923775.png" alt="image-20240225203923775"></p>
+<h5 id="常见越权漏洞"><a href="#常见越权漏洞" class="headerlink" title="常见越权漏洞"></a>常见越权漏洞</h5><p><img src="/../images/image-20240225203949392.png" alt="image-20240225203949392"></p>
+<h5 id="未授权访问漏洞"><a href="#未授权访问漏洞" class="headerlink" title="未授权访问漏洞"></a>未授权访问漏洞</h5><p><img src="/../images/image-20240225211126218.png" alt="image-20240225211126218"></p>
+<h5 id="越权测试过程"><a href="#越权测试过程" class="headerlink" title="越权测试过程"></a>越权测试过程</h5><p><img src="/../images/image-20240225211939703.png" alt="image-20240225211939703"></p>
+<p>​	&#96;</p>
+<h1 id="支付漏洞"><a href="#支付漏洞" class="headerlink" title="支付漏洞"></a>支付漏洞</h1><h5 id="快捷支付原理"><a href="#快捷支付原理" class="headerlink" title="快捷支付原理"></a>快捷支付原理</h5><p><img src="/images/image-20240304203905378.png" alt="image-20240304203905378"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Gizz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/09/12/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/">http://example.com/2024/09/12/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Gizz's BLOG</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/image/%E5%A4%B4%E5%83%8F.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/09/12/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" title="网络基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">网络基础</div></div></a></div><div class="next-post pull-right"><a href="/2024/09/12/Linux/" title="Linux"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/%E5%A4%B4%E5%83%8F.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gizz</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">WEB服务器通信原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">常见的服务器系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%E4%B8%8E%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">绝对路径与相对路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cmd"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">Cmd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%96%B9%E9%9D%A2"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">网络方面</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E8%87%AA%E5%BB%BAweb%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">快速自建web安全测试环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E5%9F%BA%E7%A1%80php"><span class="toc-number">3.</span> <span class="toc-text">后端基础php</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHP"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">PHP:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#PHP%E7%9A%84%E6%A0%87%E8%AE%B0%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.0.1.1.</span> <span class="toc-text">PHP的标记风格 :</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E5%8F%82%EF%BC%9A"><span class="toc-number">3.0.0.1.2.</span> <span class="toc-text">传参：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#PHP%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="toc-number">3.0.0.1.3.</span> <span class="toc-text">PHP的语法:</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text"> .... </span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">4.0.0.0.1.</span> <span class="toc-text">数据库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#PHP%E6%93%8D%E4%BD%9Cmysql%EF%BC%9A"><span class="toc-number">4.0.0.0.2.</span> <span class="toc-text">PHP操作mysql：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81"><span class="toc-number">5.</span> <span class="toc-text">表单验证</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%A1%A8%E5%8D%95%EF%BC%9A"><span class="toc-number">5.0.0.0.1.</span> <span class="toc-text">什么是表单：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-number">6.0.0.0.1.</span> <span class="toc-text">sql注入：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%9A"><span class="toc-number">6.0.0.0.2.</span> <span class="toc-text">什么是正则表达式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">6.0.0.0.3.</span> <span class="toc-text">正则表达式的函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="toc-number">6.0.0.0.4.</span> <span class="toc-text">正则表达式的语法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E5%AD%97%E7%AC%A6"><span class="toc-number">6.0.0.0.4.1.</span> <span class="toc-text">1.字符</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">6.0.0.0.4.2.</span> <span class="toc-text">2.关键字</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">6.0.0.0.4.3.</span> <span class="toc-text">3.修饰符</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">7.</span> <span class="toc-text">信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%EF%BC%9A"><span class="toc-number">7.0.0.0.1.</span> <span class="toc-text">为什么要信息收集：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%9A%84%E6%96%B9%E5%90%91%EF%BC%9A"><span class="toc-number">7.0.0.0.2.</span> <span class="toc-text">信息收集的方向：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-whois%E4%BF%A1%E6%81%AF"><span class="toc-number">7.0.0.0.2.1.</span> <span class="toc-text">1.whois信息</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E4%BC%81%E4%B8%9A%E4%BF%A1%E6%81%AF"><span class="toc-number">7.0.0.0.2.2.</span> <span class="toc-text">2.企业信息</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E5%AD%90%E5%9F%9F%E5%90%8D"><span class="toc-number">7.0.0.0.2.3.</span> <span class="toc-text">3.子域名</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-%E7%AB%AF%E5%8F%A3%E6%8E%A2%E6%B5%8B"><span class="toc-number">7.0.0.0.2.4.</span> <span class="toc-text">4.端口探测</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5-%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="toc-number">7.0.0.0.2.5.</span> <span class="toc-text">5.网络空间搜索引擎</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#6-%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F"><span class="toc-number">7.0.0.0.2.6.</span> <span class="toc-text">6.目录扫描</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#7-%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-number">7.0.0.0.2.7.</span> <span class="toc-text">7.指纹识别</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#8-%E6%97%81%E7%AB%99%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.0.0.0.2.8.</span> <span class="toc-text">8.旁站查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#9-c%E7%AB%AF%E6%89%AB%E6%8F%8F"><span class="toc-number">7.0.0.0.2.9.</span> <span class="toc-text">9.c端扫描</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#10-%E5%86%85%E5%AE%B9%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">7.0.0.0.2.10.</span> <span class="toc-text">10.内容敏感信息泄露</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E7%9A%84%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-number">8.</span> <span class="toc-text">sql注入的原理分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B"><span class="toc-number">8.0.0.0.1.</span> <span class="toc-text">sql注入原理简介</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">8.0.0.0.2.</span> <span class="toc-text">sql注入的基本流程</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%B3%A8%E5%85%A5"><span class="toc-number">8.0.0.0.2.1.</span> <span class="toc-text">1.判断是否存在注入</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E5%88%A4%E6%96%AD%E5%AD%97%E6%AE%B5%E6%95%B0"><span class="toc-number">8.0.0.0.2.2.</span> <span class="toc-text">2.判断字段数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E5%88%A4%E6%96%AD%E6%98%BE%E9%94%99%E4%BD%8D"><span class="toc-number">8.0.0.0.2.3.</span> <span class="toc-text">3.判断显错位</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-%E5%88%A4%E6%96%AD%E5%BA%93%E5%90%8D"><span class="toc-number">8.0.0.0.2.4.</span> <span class="toc-text">4.判断库名</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5-%E5%88%A4%E6%96%AD%E8%A1%A8%E5%90%8D"><span class="toc-number">8.0.0.0.2.5.</span> <span class="toc-text">5.判断表名</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#6-%E5%88%A4%E6%96%AD%E5%88%97%E5%90%8D"><span class="toc-number">8.0.0.0.2.6.</span> <span class="toc-text">6.判断列名</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E7%9A%84%E5%AE%9E%E6%93%8D"><span class="toc-number">8.0.0.0.3.</span> <span class="toc-text">sql注入的实操</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="toc-number">9.</span> <span class="toc-text">渗透测试常用工具</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">9.0.0.0.1.</span> <span class="toc-text">环境的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%96%87%E4%BB%B6%E7%A7%BB%E5%8A%A8%E6%97%B6%E5%8F%AF%E4%BB%A5%E7%94%A83389%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">9.0.0.0.1.1.</span> <span class="toc-text">在虚拟机文件移动时可以用3389操作：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-python%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-number">9.0.0.0.1.2.</span> <span class="toc-text">1.python的环境</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-java%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-number">9.0.0.0.1.3.</span> <span class="toc-text">2.java的环境</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#sqlmap"><span class="toc-number">9.0.0.0.2.</span> <span class="toc-text">sqlmap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#burpsuite"><span class="toc-number">9.0.0.0.3.</span> <span class="toc-text">burpsuite</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6"><span class="toc-number">9.0.0.0.4.</span> <span class="toc-text">浏览器插件</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#POST%E6%B3%A8%E5%85%A5"><span class="toc-number">10.</span> <span class="toc-text">POST注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HEAD%E6%B3%A8%E5%85%A5-%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5"><span class="toc-number">11.</span> <span class="toc-text">HEAD注入-报错注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#head%E6%B3%A8%E5%85%A5%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">11.0.0.0.1.</span> <span class="toc-text">head注入的原理：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#head%E6%B3%A8%E5%85%A5%E7%9A%84%E5%AE%9E%E6%93%8D%EF%BC%9A"><span class="toc-number">11.0.0.0.2.</span> <span class="toc-text">head注入的实操：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B3%A8%EF%BC%9A%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E6%98%AF%E4%B8%8D%E8%83%BD%E5%87%BA%E7%8E%B0-%E7%9A%84"><span class="toc-number">11.0.0.0.2.1.</span> <span class="toc-text">注：报错注入是不能出现*的</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4%EF%BC%9A"><span class="toc-number">11.0.0.0.3.</span> <span class="toc-text">请求头：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5"><span class="toc-number">12.</span> <span class="toc-text">宽字节注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%AD%94%E6%9C%AF%E5%BC%95%E5%8F%B7"><span class="toc-number">12.0.0.0.1.</span> <span class="toc-text">魔术引号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86"><span class="toc-number">12.0.0.0.2.</span> <span class="toc-text">宽字节注入原理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%BD%E5%AD%97%E8%8A%82%E5%AE%9E%E6%88%98"><span class="toc-number">12.0.0.0.3.</span> <span class="toc-text">宽字节实战</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Access-Cookie%E6%B3%A8%E5%85%A5"><span class="toc-number">13.</span> <span class="toc-text">Access-Cookie注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Cookie%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B"><span class="toc-number">13.0.0.0.1.</span> <span class="toc-text">Cookie注入简介</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AECookie"><span class="toc-number">13.0.0.0.2.</span> <span class="toc-text">设置Cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8burp"><span class="toc-number">13.0.0.0.2.1.</span> <span class="toc-text">1.利用burp</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">13.0.0.0.2.2.</span> <span class="toc-text">2.利用浏览器</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Cookie%E9%9D%B6%E5%9C%BA"><span class="toc-number">13.0.0.0.3.</span> <span class="toc-text">Cookie靶场</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Access-%E5%81%8F%E7%A7%BB%E6%B3%A8%E5%85%A5"><span class="toc-number">14.</span> <span class="toc-text">Access-偏移注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MSSQL%E6%B3%A8%E5%85%A5-%E5%8F%8D%E5%BC%B9%E6%B3%A8%E5%85%A5"><span class="toc-number">15.</span> <span class="toc-text">MSSQL注入-反弹注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#MSSQL%E6%B3%A8%E5%85%A5-%E5%8F%8D%E5%BC%B9%E6%B3%A8%E5%85%A5%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">15.0.0.0.1.</span> <span class="toc-text">MSSQL注入-反弹注入使用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%BC%B9%E6%B3%A8%E5%85%A5"><span class="toc-number">15.0.0.0.1.1.</span> <span class="toc-text">什么是反弹注入</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8Bmssql"><span class="toc-number">15.0.0.0.1.2.</span> <span class="toc-text">了解一下mssql</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAmssql%E7%8E%AF%E5%A2%83"><span class="toc-number">15.0.0.0.2.</span> <span class="toc-text">快速搭建一个mssql环境</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%E5%90%84%E7%A7%8D%E8%99%9A%E6%8B%9F%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">15.0.0.0.2.1.</span> <span class="toc-text">了解一下各种虚拟服务器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%9C%A8%E6%B3%A8%E5%86%8C%E5%AB%96%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6-%E7%9A%84%E5%B0%8Ftips"><span class="toc-number">15.0.0.0.2.2.</span> <span class="toc-text">在注册嫖服务器时 的小tips</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">15.0.0.0.2.3.</span> <span class="toc-text">连接数据库的方式</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MSSSQL%E6%98%BE%E9%94%99%E6%B3%A8%E5%85%A5"><span class="toc-number">15.0.0.0.3.</span> <span class="toc-text">MSSSQL显错注入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MSSQL%E5%8F%8D%E5%BC%B9%E6%B3%A8%E5%85%A5%E8%AF%AD%E5%8F%A5%E8%A7%A3%E6%9E%90"><span class="toc-number">15.0.0.0.4.</span> <span class="toc-text">MSSQL反弹注入语句解析</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9%E6%B3%A8%E5%85%A5%E7%9A%84%E6%A0%B8%E5%BF%83%EF%BC%9A"><span class="toc-number">15.0.0.0.4.1.</span> <span class="toc-text">反弹注入的核心：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%AA%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-number">15.0.0.0.4.2.</span> <span class="toc-text">介绍一个堆叠注入：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MYSQL%E6%B3%A8%E5%85%A5-DNS%E6%B3%A8%E5%85%A5"><span class="toc-number">16.</span> <span class="toc-text">MYSQL注入-DNS注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DNS%E6%B3%A8%E5%85%A5%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">16.0.0.0.1.</span> <span class="toc-text">DNS注入的使用场景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DNSLOG%E7%9A%84%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="toc-number">16.0.0.0.2.</span> <span class="toc-text">DNSLOG的函数解析</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%B0%8F%E6%B3%A8%EF%BC%9A"><span class="toc-number">16.0.0.0.2.1.</span> <span class="toc-text">小注：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DNS%E6%B3%A8%E5%85%A5%E7%9A%84%E9%9D%B6%E5%9C%BA"><span class="toc-number">16.0.0.0.3.</span> <span class="toc-text">DNS注入的靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%89%E5%85%A8"><span class="toc-number">16.0.0.0.3.1.</span> <span class="toc-text">浏览器安全</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%9B%B2%E6%B3%A8"><span class="toc-number">17.</span> <span class="toc-text">SQL注入盲注</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%9B%B2%E6%B3%A8"><span class="toc-number">17.0.0.0.1.</span> <span class="toc-text">什么是盲注</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%B2%E6%B3%A8%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">17.0.0.0.2.</span> <span class="toc-text">盲注的类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%B2%E6%B3%A8%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">17.0.0.0.3.</span> <span class="toc-text">盲注的步骤</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Oracle%E6%B3%A8%E5%85%A5-%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5"><span class="toc-number">18.</span> <span class="toc-text">Oracle注入-报错注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Oracle-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">18.0.0.0.1.</span> <span class="toc-text">Oracle 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">18.0.0.0.1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">18.0.0.0.1.2.</span> <span class="toc-text">语法</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Oracle%E7%9A%84%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5"><span class="toc-number">18.0.0.0.2.</span> <span class="toc-text">Oracle的报错注入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Oracle%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98"><span class="toc-number">18.0.0.0.3.</span> <span class="toc-text">Oracle中数据的类型问题</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQLMAP%E7%BB%95%E8%BF%87WAF%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99"><span class="toc-number">19.</span> <span class="toc-text">SQLMAP绕过WAF脚本编写</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#WAF%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="toc-number">19.0.0.0.1.</span> <span class="toc-text">WAF的介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BB%95waf%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">19.0.0.0.2.</span> <span class="toc-text">常见的绕waf的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%BC%BA%E8%B0%83%E4%B8%80%E4%B8%8B%E6%B3%A8%E9%87%8A%E7%BB%95%E8%BF%87%E7%9A%84%E6%89%8B%E6%AE%B5"><span class="toc-number">19.0.0.0.2.1.</span> <span class="toc-text">重点强调一下注释绕过的手段</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E7%9A%84%E6%89%8B%E6%AE%B5"><span class="toc-number">19.0.0.0.2.2.</span> <span class="toc-text">垃圾数据填充的手段</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SQLMAP%E7%BB%95WAF%E8%84%9A%E6%9C%AC"><span class="toc-number">19.0.0.0.3.</span> <span class="toc-text">SQLMAP绕WAF脚本</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E8%A7%A3%E5%89%96"><span class="toc-number">20.</span> <span class="toc-text">XSS的原理和解剖</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#xss%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E7%89%B9%E6%80%A7"><span class="toc-number">20.0.0.0.1.</span> <span class="toc-text">xss的原理和特性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#xss%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">20.0.0.0.2.</span> <span class="toc-text">xss的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%EF%BC%9A"><span class="toc-number">20.0.0.0.2.1.</span> <span class="toc-text">同源策略：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E4%BC%9A%E8%AF%9D%EF%BC%9A"><span class="toc-number">20.0.0.0.2.2.</span> <span class="toc-text">一次会话：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#xss%E8%AF%AD%E5%8F%A5"><span class="toc-number">20.0.0.0.3.</span> <span class="toc-text">xss语句</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8Bxss"><span class="toc-number">21.</span> <span class="toc-text">存储型xss</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dom-Based-xss"><span class="toc-number">22.</span> <span class="toc-text">Dom Based xss</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#xss%E7%9A%84%E9%98%B2%E5%BE%A1%E6%89%8B%E6%AE%B5"><span class="toc-number">22.0.0.0.1.</span> <span class="toc-text">xss的防御手段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFdombaesd-xss"><span class="toc-number">22.0.0.0.2.</span> <span class="toc-text">什么是dombaesd xss</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFdom"><span class="toc-number">22.0.0.0.2.1.</span> <span class="toc-text">什么是dom</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#document%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="toc-number">22.0.0.0.2.2.</span> <span class="toc-text">document对象属性</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%AA%E9%9D%99%E6%80%81"><span class="toc-number">22.0.0.0.3.</span> <span class="toc-text">伪静态</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%E2%80%94%E2%80%94CSRF"><span class="toc-number">23.</span> <span class="toc-text">跨站请求伪造——CSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCSRF"><span class="toc-number">23.0.0.0.1.</span> <span class="toc-text">什么是CSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#csrf%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="toc-number">23.0.0.0.1.1.</span> <span class="toc-text">csrf的条件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#csrf%E4%B8%8E%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99"><span class="toc-number">23.0.0.0.1.2.</span> <span class="toc-text">csrf与钓鱼网站</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1csrf"><span class="toc-number">23.0.0.0.1.3.</span> <span class="toc-text">防御csrf</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E-%E8%A7%A3%E6%9E%90%E3%80%81%E9%AA%8C%E8%AF%81%E3%80%81%E4%BC%AA%E9%80%A0"><span class="toc-number">24.</span> <span class="toc-text">文件上传漏洞 解析、验证、伪造</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="toc-number">24.0.0.0.1.</span> <span class="toc-text">什么是文件上传漏洞</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E9%98%B2%E6%8A%A4"><span class="toc-number">24.0.0.0.2.</span> <span class="toc-text">文件上传的防护</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%BB%91%E5%90%8D%E5%8D%95%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">24.0.0.0.3.</span> <span class="toc-text">黑名单的绕过</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%99%BD%E5%90%8D%E5%8D%95%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">24.0.0.0.4.</span> <span class="toc-text">白名单的绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#oo%E6%88%AA%E6%96%AD"><span class="toc-number">24.0.0.0.4.1.</span> <span class="toc-text">oo截断</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%A0%81"><span class="toc-number">24.0.0.0.4.2.</span> <span class="toc-text">图片码</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%EF%BC%9A"><span class="toc-number">24.0.0.0.4.3.</span> <span class="toc-text">二次渲染：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="toc-number">24.0.0.0.5.</span> <span class="toc-text">解析漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#iis6-0-%EF%BC%881%EF%BC%89"><span class="toc-number">24.0.0.0.5.1.</span> <span class="toc-text">iis6.0 （1）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-number">24.0.0.0.5.2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#iis6-0%EF%BC%882%EF%BC%89"><span class="toc-number">24.0.0.0.5.3.</span> <span class="toc-text">iis6.0（2）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#CGI%E6%BC%8F%E6%B4%9E"><span class="toc-number">24.0.0.0.5.4.</span> <span class="toc-text">CGI漏洞</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0"><span class="toc-number">25.</span> <span class="toc-text">服务器端请求伪造</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ssrf%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">25.0.0.0.1.</span> <span class="toc-text">ssrf是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#dict%E6%8E%A2%E6%B5%8B%E7%AB%AF%E5%8F%A3"><span class="toc-number">25.0.0.0.1.1.</span> <span class="toc-text">dict探测端口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#-1"><span class="toc-number">25.0.0.0.1.2.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ssrf%E6%94%BB%E5%87%BB"><span class="toc-number">25.0.0.0.2.</span> <span class="toc-text">ssrf攻击</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ssrf%E9%9D%B6%E5%9C%BA"><span class="toc-number">25.0.0.0.3.</span> <span class="toc-text">ssrf靶场</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E5%86%85%E5%AE%B9"><span class="toc-number">25.0.0.0.4.</span> <span class="toc-text">扩展内容</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XXE"><span class="toc-number">26.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFxxe"><span class="toc-number">26.0.0.0.1.</span> <span class="toc-text">什么是xxe</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFxml"><span class="toc-number">26.0.0.0.2.</span> <span class="toc-text">什么是xml</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#xxe%E5%8E%9F%E7%90%86"><span class="toc-number">26.0.0.0.3.</span> <span class="toc-text">xxe原理</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#simpleXML%E5%87%BD%E6%95%B0"><span class="toc-number">26.0.0.0.3.1.</span> <span class="toc-text">simpleXML函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#xxe%E7%9A%84%E5%9B%9E%E6%98%BE"><span class="toc-number">26.0.0.0.3.2.</span> <span class="toc-text">xxe的回显</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%BB%E6%89%BExxe%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">26.0.0.0.4.</span> <span class="toc-text">寻找xxe的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-number">26.0.0.0.4.1.</span> <span class="toc-text">代码审计</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8Dxxe"><span class="toc-number">26.0.0.0.5.</span> <span class="toc-text">修复xxe</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E"><span class="toc-number">27.</span> <span class="toc-text">反序列化漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">27.0.0.0.1.</span> <span class="toc-text">什么是序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%A3%E7%A0%81"><span class="toc-number">27.0.0.0.1.1.</span> <span class="toc-text">序列化代码</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95"><span class="toc-number">27.0.0.0.2.</span> <span class="toc-text">魔术方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-number">27.0.0.0.2.1.</span> <span class="toc-text">案例</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-2"><span class="toc-number">28.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%8C%85%E5%90%AB%E4%B8%8E%E8%BF%9C%E7%A8%8B%E5%8C%85%E5%90%AB"><span class="toc-number">29.</span> <span class="toc-text">本地包含与远程包含</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-number">29.0.0.0.1.</span> <span class="toc-text">什么是文件包含漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">29.0.0.0.1.1.</span> <span class="toc-text">什么是文件包含</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">29.0.0.0.1.2.</span> <span class="toc-text">文件包含的函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E4%B8%8D%E5%9C%A8%E4%B9%8E%E5%90%8E%E7%BC%80"><span class="toc-number">29.0.0.0.1.3.</span> <span class="toc-text">文件包含不在乎后缀</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">29.0.0.0.1.4.</span> <span class="toc-text">文件包含的分类</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%8F%E7%9F%A5%E8%AF%86"><span class="toc-number">29.0.0.0.2.</span> <span class="toc-text">小知识</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#phpmyadmin"><span class="toc-number">29.0.0.0.3.</span> <span class="toc-text">phpmyadmin</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96"><span class="toc-number">30.</span> <span class="toc-text">变量覆盖</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96"><span class="toc-number">30.0.0.0.1.</span> <span class="toc-text">什么是变量覆盖</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="toc-number">30.0.0.0.2.</span> <span class="toc-text">函数解析</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#extract"><span class="toc-number">30.0.0.0.2.1.</span> <span class="toc-text">extract</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#parse-str"><span class="toc-number">30.0.0.0.2.2.</span> <span class="toc-text">parse_str()</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#-3"><span class="toc-number">30.0.0.0.2.3.</span> <span class="toc-text">$$</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%AE%E5%80%BC%E5%88%86%E7%A6%BB"><span class="toc-number">30.0.0.0.2.4.</span> <span class="toc-text">键值分离</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E9%81%8D%E5%8E%86"><span class="toc-number">30.0.0.0.2.5.</span> <span class="toc-text">数组遍历</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#session"><span class="toc-number">30.0.0.0.3.</span> <span class="toc-text">session</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="toc-number">31.</span> <span class="toc-text">代码执行漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="toc-number">31.0.0.0.1.</span> <span class="toc-text">代码执行漏洞原理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="toc-number">31.0.0.0.2.</span> <span class="toc-text">代码执行函数</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#disable-function"><span class="toc-number">31.0.0.0.2.1.</span> <span class="toc-text">disable function</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">31.0.0.0.2.2.</span> <span class="toc-text">常用函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">31.0.0.0.2.3.</span> <span class="toc-text">三目运算符</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="toc-number">32.</span> <span class="toc-text">命令执行漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">32.0.0.0.1.</span> <span class="toc-text">命令执行漏洞的原理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">32.0.0.0.2.</span> <span class="toc-text">命令执行的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">32.0.0.0.2.1.</span> <span class="toc-text">函数</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87%E5%AF%86%E7%A0%81%E6%89%BE%E5%9B%9E%E6%BC%8F%E6%B4%9E"><span class="toc-number">33.</span> <span class="toc-text">验证码绕过密码找回漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E4%BD%9C%E7%94%A8"><span class="toc-number">33.0.0.0.1.</span> <span class="toc-text">验证码作用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-number">33.0.0.0.2.</span> <span class="toc-text">验证码绕过</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E6%89%BE%E5%9B%9E%E6%BC%8F%E6%B4%9E"><span class="toc-number">33.0.0.0.3.</span> <span class="toc-text">密码找回漏洞</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B3%E8%A1%8C%E8%B6%8A%E6%9D%83-%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83"><span class="toc-number">34.</span> <span class="toc-text">平行越权 垂直越权</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B6%8A%E6%9D%83"><span class="toc-number">34.0.0.0.1.</span> <span class="toc-text">什么是越权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E"><span class="toc-number">34.0.0.0.2.</span> <span class="toc-text">常见越权漏洞</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E"><span class="toc-number">34.0.0.0.3.</span> <span class="toc-text">未授权访问漏洞</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="toc-number">34.0.0.0.4.</span> <span class="toc-text">越权测试过程</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E"><span class="toc-number">35.</span> <span class="toc-text">支付漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E6%94%AF%E4%BB%98%E5%8E%9F%E7%90%86"><span class="toc-number">35.0.0.0.1.</span> <span class="toc-text">快捷支付原理</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/%E5%86%85%E7%BD%91%E5%AD%A6%E4%B9%A0/" title="内网学习">内网学习</a><time datetime="2024-09-12T12:27:20.000Z" title="发表于 2024-09-12 20:27:20">2024-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/web%E6%9C%8D%E5%8A%A1/" title="web服务">web服务</a><time datetime="2024-09-12T12:25:42.000Z" title="发表于 2024-09-12 20:25:42">2024-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" title="网络基础">网络基础</a><time datetime="2024-09-12T12:25:32.000Z" title="发表于 2024-09-12 20:25:32">2024-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" title="渗透学习">渗透学习</a><time datetime="2024-09-12T12:25:03.000Z" title="发表于 2024-09-12 20:25:03">2024-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/Linux/" title="Linux">Linux</a><time datetime="2024-09-12T12:24:48.000Z" title="发表于 2024-09-12 20:24:48">2024-09-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/image/top.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Gizz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
