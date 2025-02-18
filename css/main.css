@@ -1244,7 +1244,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #e9264d;
+  background: #e481d9;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2644,52 +2644,49 @@ pre,
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
   background: #fafafa !important;
 }
-@media (max-width: 767px) {
-  .post-block {
-    padding: 1.2rem;
-    margin: 1rem 0;
-  }
-  .header {
-    padding: 0 10px;
-  }
-}
 .header-inner {
   padding: 1rem 0;
   border-bottom: 1px solid #d2d2d7;
   background: rgba(255,255,255,0.86) !important;
   backdrop-filter: blur(12px);
 }
-/* 低饱和度滤镜 */
-saturate(0.9)
-/* 统一圆角 */
 .sidebar {
-  background: rgba(255,255,255,0.96) !important;
+  background-color: rgba(255,255,255,0.8);
   backdrop-filter: blur(20px);
-  border-left: 1px solid #e0e0e0;
-  box-shadow: -8px 0 24px rgba(0,0,0,0.04);
-  transform: translateX(102%);
-  transition: all 0.36s cubic-bezier(0.22, 0.61, 0.36, 1);
+  border-left: 1px solid rgba(255,255,255,0.3);
+  border-radius: 12px 0 0 12px;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: all 0.3s ease;
 }
-.sidebar.active {
-  transform: none;
+.sidebar:hover {
+  background-color: rgba(255,255,255,0.9);
+  box-shadow: -6px 0 16px rgba(0,0,0,0.15);
 }
-.sidebar .sidebar-nav li {
-  margin: 0.6rem 0;
+.sidebar-avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
-.sidebar .sidebar-nav li a {
-  font-weight: 450;
-  transition: all 0.22s;
+.sidebar-avatar img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
-.sidebar .sidebar-nav li a:hover {
-  color: #1d1d1f !important;
-  transform: translateX(8px);
+.tag-cloud a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 4px;
+  background-color: rgba(0,0,0,0.05);
+  border-radius: 20px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
-.sidebar .tag-cloud a {
-  background: #f5f5f7 !important;
-  border-radius: 6px;
-  transition: all 0.24s;
-}
-.sidebar .tag-cloud a:hover {
-  background: #e0e0e0 !important;
-  transform: scale(1.08);
+.tag-cloud a:hover {
+  background-color: rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
