@@ -1,24 +1,24 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Gizz">
-  <meta name="keywords" content="">
-  
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
     <meta name="description" content="网络基础网络设备   网络通信问题 带宽：指设备能接受的传输的网络流量的大小，设备上网最终是由带宽决定的，也就是网卡的性能，即使接通的外部网线的网速快。带宽小还是只能跑出带宽的网速  cs架构： 就是由客户端与服务端组成的架构，用来传递信通信  协议： 各个设备通讯之间所遵守的协议，用来进行设备之间的通讯，相互传递信息 osi模型   参考博客：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;cl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络基础">
@@ -96,302 +96,220 @@
 <meta property="article:published_time" content="2024-09-12T12:25:32.000Z">
 <meta property="article:modified_time" content="2024-09-12T12:26:48.172Z">
 <meta property="article:author" content="Gizz">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/image-20240606192535542.png">
-  
-  
-  
-  <title>网络基础 - Gizz&#39;s BLOG</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+<link rel="canonical" href="http://example.com/2024/09/12/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
 
 
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/09/12/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/","path":"2024/09/12/网络基础/","title":"网络基础"}</script>
 
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>网络基础 | Gizz's BLOG</title>
   
 
 
 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
 
 
-  
-<meta name="generator" content="Hexo 7.3.0"></head>
 
 
-<body>
-  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
 
-  <header>
-    
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Gizz's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
 </nav>
 
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">网络基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87"><span class="nav-number">1.0.1.</span> <span class="nav-text">网络设备</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E9%97%AE%E9%A2%98"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">网络通信问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#osi%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.0.2.</span> <span class="nav-text">osi模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%82"><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">物理层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-number">1.0.2.0.2.</span> <span class="nav-text">数据链路层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">1.0.2.0.3.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="nav-number">1.0.2.0.4.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-number">1.0.2.0.5.</span> <span class="nav-text">应用层</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF"><span class="nav-number">1.0.3.</span> <span class="nav-text">网络通讯</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#mac%E5%9C%B0%E5%9D%80"><span class="nav-number">1.0.3.0.1.</span> <span class="nav-text">mac地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#IP%E5%9C%B0%E5%9D%80"><span class="nav-number">1.0.3.0.2.</span> <span class="nav-text">IP地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="nav-number">1.0.3.0.3.</span> <span class="nav-text">交换机</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8%EF%BC%9A"><span class="nav-number">1.0.3.0.4.</span> <span class="nav-text">路由器：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E8%BF%87%E7%A8%8B"><span class="nav-number">1.0.3.0.5.</span> <span class="nav-text">网络通讯过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dns%E8%A7%A3%E6%9E%90"><span class="nav-number">1.0.4.</span> <span class="nav-text">dns解析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#dns%E8%A7%A3%E6%9E%90%E5%88%86%E7%B1%BB"><span class="nav-number">1.0.4.0.1.</span> <span class="nav-text">dns解析分类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ip%E5%9C%B0%E5%9D%80%E5%88%92%E5%88%86"><span class="nav-number">1.0.5.</span> <span class="nav-text">ip地址划分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Net"><span class="nav-number">1.0.5.0.1.</span> <span class="nav-text">Net</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ip%E5%9C%B0%E5%9D%80%E7%9A%84%E7%B1%BB%E5%88%AB"><span class="nav-number">1.0.5.0.2.</span> <span class="nav-text">ip地址的类别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ipv4%E5%9C%B0%E5%9D%80%E4%B8%8D%E5%A4%9F%E7%94%A8"><span class="nav-number">1.0.5.0.3.</span> <span class="nav-text">ipv4地址不够用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="nav-number">1.0.6.</span> <span class="nav-text">子网掩码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E7%BC%96%E7%A0%81"><span class="nav-number">1.0.7.</span> <span class="nav-text">文字编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.0.8.</span> <span class="nav-text">ARP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#icmp"><span class="nav-number">1.0.8.0.1.</span> <span class="nav-text">icmp</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#arp%E6%AC%BA%E9%AA%97"><span class="nav-number">1.0.8.0.2.</span> <span class="nav-text">arp欺骗</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-number">1.0.9.</span> <span class="nav-text">TCP三次握手，四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#tcp%E4%B8%8Eudp%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.0.9.0.1.</span> <span class="nav-text">tcp与udp的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tcp%E6%95%B0%E6%8D%AE%E5%8C%85%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.0.9.0.2.</span> <span class="nav-text">tcp数据包类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">1.0.9.0.3.</span> <span class="nav-text">三次握手</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-number">1.0.9.0.4.</span> <span class="nav-text">四次挥手</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCPdump%E6%8A%93%E5%8C%85"><span class="nav-number">1.0.10.</span> <span class="nav-text">TCPdump抓包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7"><span class="nav-number">1.0.11.</span> <span class="nav-text">网络工具</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-nmap"><span class="nav-number">1.0.11.0.1.</span> <span class="nav-text">1.nmap</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-traceroute%E5%92%8Ctracert"><span class="nav-number">1.0.11.0.2.</span> <span class="nav-text">2.traceroute和tracert</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.0.12.</span> <span class="nav-text">VMware虚拟机的网络模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.0.13.</span> <span class="nav-text">静态路由项目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE"><span class="nav-number">1.0.13.0.1.</span> <span class="nav-text">静态路由配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1"><span class="nav-number">1.0.13.0.2.</span> <span class="nav-text">配置静态路由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%93%E5%BC%80%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD"><span class="nav-number">1.0.13.0.3.</span> <span class="nav-text">打开转发功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E5%8F%91%E9%80%81%E5%8E%9F%E7%90%86"><span class="nav-number">1.0.13.0.4.</span> <span class="nav-text">数据包发送原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="nav-number">1.0.14.</span> <span class="nav-text">端口映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vlan"><span class="nav-number">1.0.15.</span> <span class="nav-text">vlan</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.0.15.0.1.</span> <span class="nav-text">交换机类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEvlan"><span class="nav-number">1.0.15.0.2.</span> <span class="nav-text">配置vlan</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VPN"><span class="nav-number">1.0.16.</span> <span class="nav-text">VPN</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Gizz</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="网络基础"></span>
-          
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/12/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Gizz">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gizz's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="网络基础 | Gizz's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-12 20:25:32 / 修改时间：20:26:48" itemprop="dateCreated datePublished" datetime="2024-09-12T20:25:32+08:00">2024-09-12</time>
+    </span>
+
+  
+</div>
+
         </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-12 20:25" pubdate>
-          2024年9月12日 晚上
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          1.4k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          12 分钟
-        
-      </span>
-    
+      </header>
 
     
     
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
     
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">网络基础</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h1 id="网络基础"><a href="#网络基础" class="headerlink" title="网络基础"></a>网络基础</h1><h3 id="网络设备"><a href="#网络设备" class="headerlink" title="网络设备"></a>网络设备</h3><p><img src="/../images/image-20240606192535542.png" srcset="/img/loading.gif" lazyload alt="image-20240606192535542"></p>
-<p><img src="/../images/image-20240606193045054.png" srcset="/img/loading.gif" lazyload alt="image-20240606193045054"></p>
-<p><img src="/../images/image-20240606193632654.png" srcset="/img/loading.gif" lazyload alt="image-20240606193632654"></p>
-<h5 id="网络通信问题"><a href="#网络通信问题" class="headerlink" title="网络通信问题"></a>网络通信问题</h5><p><img src="/../images/image-20240606195021245.png" srcset="/img/loading.gif" lazyload alt="image-20240606195021245"></p>
+    <div class="post-body" itemprop="articleBody"><h1 id="网络基础"><a href="#网络基础" class="headerlink" title="网络基础"></a>网络基础</h1><h3 id="网络设备"><a href="#网络设备" class="headerlink" title="网络设备"></a>网络设备</h3><p><img src="/../images/image-20240606192535542.png" alt="image-20240606192535542"></p>
+<p><img src="/../images/image-20240606193045054.png" alt="image-20240606193045054"></p>
+<p><img src="/../images/image-20240606193632654.png" alt="image-20240606193632654"></p>
+<h5 id="网络通信问题"><a href="#网络通信问题" class="headerlink" title="网络通信问题"></a>网络通信问题</h5><p><img src="/../images/image-20240606195021245.png" alt="image-20240606195021245"></p>
 <p>带宽：指设备能接受的传输的网络流量的大小，设备上网最终是由带宽决定的，也就是网卡的性能，即使接通的外部网线的网速快。带宽小还是只能跑出带宽的网速</p>
-<p><img src="/../images/image-20240606194154574.png" srcset="/img/loading.gif" lazyload alt="image-20240606194154574"></p>
+<p><img src="/../images/image-20240606194154574.png" alt="image-20240606194154574"></p>
 <p>cs架构：</p>
 <p>就是由客户端与服务端组成的架构，用来传递信通信</p>
-<p><img src="/../images/image-20240606194739210.png" srcset="/img/loading.gif" lazyload alt="image-20240606194739210"></p>
+<p><img src="/../images/image-20240606194739210.png" alt="image-20240606194739210"></p>
 <p>协议：</p>
 <p>各个设备通讯之间所遵守的协议，用来进行设备之间的通讯，相互传递信息</p>
-<h3 id="osi模型"><a href="#osi模型" class="headerlink" title="osi模型"></a>osi模型</h3><p><img src="/../images/image-20240628234037693.png" srcset="/img/loading.gif" lazyload alt="image-20240628234037693"></p>
-<p><img src="/../images/image-20240628234044768.png" srcset="/img/loading.gif" lazyload alt="image-20240628234044768"></p>
-<p><img src="/../images/image-20240628234105889.png" srcset="/img/loading.gif" lazyload alt="image-20240628234105889"></p>
+<h3 id="osi模型"><a href="#osi模型" class="headerlink" title="osi模型"></a>osi模型</h3><p><img src="/../images/image-20240628234037693.png" alt="image-20240628234037693"></p>
+<p><img src="/../images/image-20240628234044768.png" alt="image-20240628234044768"></p>
+<p><img src="/../images/image-20240628234105889.png" alt="image-20240628234105889"></p>
 <p>参考博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/clschao/articles/9578922.html">https://www.cnblogs.com/clschao/articles/9578922.html</a></p>
 <p>在制定协议的时候都是遵循osi的七层模型来设计</p>
 <h5 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h5><p>解决信号转换的问题</p>
-<p> <img src="/../images/image-20240628173425615.png" srcset="/img/loading.gif" lazyload alt="image-20240628173425615"></p>
+<p> <img src="/../images/image-20240628173425615.png" alt="image-20240628173425615"></p>
 <h5 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h5><p>给数据包加上mac地址（head）和数据内容</p>
-<p><img src="/../images/image-20240628173531542.png" srcset="/img/loading.gif" lazyload alt="image-20240628173531542"></p>
-<p><img src="/../images/image-20240628193718630.png" srcset="/img/loading.gif" lazyload alt="image-20240628193718630"></p>
-<p><img src="/../images/image-20240628193731974.png" srcset="/img/loading.gif" lazyload alt="image-20240628193731974"></p>
+<p><img src="/../images/image-20240628173531542.png" alt="image-20240628173531542"></p>
+<p><img src="/../images/image-20240628193718630.png" alt="image-20240628193718630"></p>
+<p><img src="/../images/image-20240628193731974.png" alt="image-20240628193731974"></p>
 <h5 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h5><p>给请求包再加上ip地址和数据（加工ip地址）</p>
-<p><img src="/../images/image-20240628194136740.png" srcset="/img/loading.gif" lazyload alt="image-20240628194136740"></p>
-<p><img src="/../images/image-20240628194236349.png" srcset="/img/loading.gif" lazyload alt="image-20240628194236349"></p>
-<p><img src="/../images/image-20240628231933406.png" srcset="/img/loading.gif" lazyload alt="image-20240628231933406"></p>
+<p><img src="/../images/image-20240628194136740.png" alt="image-20240628194136740"></p>
+<p><img src="/../images/image-20240628194236349.png" alt="image-20240628194236349"></p>
+<p><img src="/../images/image-20240628231933406.png" alt="image-20240628231933406"></p>
 <h5 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h5><p>传输层的由来：网络层的ip帮我们区分子网，以太网层的mac帮我们找到主机吗，但是只找到主机有用吗，是不是程序之间进行的沟通啊像QQ、浏览器和京东服务器，然后大家使用的都是应用程序，你的电脑上可能同时开启qq，暴风影音，等多个应用程序，</p>
 <p>　　　　那么我们通过ip和mac找到了一台特定的主机，如何标识这台主机上的应用程序，答案就是端口，端口即应用程序与网卡关联的编号。</p>
 <p>　　　　传输层功能：建立端口到端口的通信(端对端通信)</p>
-<p><img src="/../images/image-20240628232543920.png" srcset="/img/loading.gif" lazyload alt="image-20240628232543920"></p>
-<p><img src="/../images/image-20240628233159545.png" srcset="/img/loading.gif" lazyload alt="image-20240628233159545"></p>
-<p><img src="/../images/image-20240628233108114.png" srcset="/img/loading.gif" lazyload alt="image-20240628233108114"></p>
+<p><img src="/../images/image-20240628232543920.png" alt="image-20240628232543920"></p>
+<p><img src="/../images/image-20240628233159545.png" alt="image-20240628233159545"></p>
+<p><img src="/../images/image-20240628233108114.png" alt="image-20240628233108114"></p>
 <h5 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h5><p>应用层就是处理相关应用所应该遵顼的协议</p>
-<p><img src="/../images/image-20240628233742600.png" srcset="/img/loading.gif" lazyload alt="image-20240628233742600"></p>
+<p><img src="/../images/image-20240628233742600.png" alt="image-20240628233742600"></p>
 <h3 id="网络通讯"><a href="#网络通讯" class="headerlink" title="网络通讯"></a>网络通讯</h3><p>广播风暴：当联通集线器的设备过多同时发送信号时会造成信号阻塞</p>
 <h5 id="mac地址"><a href="#mac地址" class="headerlink" title="mac地址"></a>mac地址</h5><p>mac地址就是每一台电脑进行物理通讯时的唯一标识</p>
 <p>用于内网主机通讯定位</p>
-<p><img src="/../images/image-20240606200357387.png" srcset="/img/loading.gif" lazyload alt="image-20240606200357387"></p>
+<p><img src="/../images/image-20240606200357387.png" alt="image-20240606200357387"></p>
 <h5 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h5><p>当出现通过mac地址连接出现网络堵塞时，我们通过ip地址对设备进行划分，划分成不同的区域，并给予其ip地址</p>
 <p>ip地址的组成 从 0.0.0.0 到255.255.255.255</p>
 <p>0对应的二进制数00000000</p>
 <p>255对应的二级制 11111111</p>
 <p>也就是说每一位上可以有2的八次方个组合，总共就是2的32位组合</p>
-<p><img src="/../images/image-20240606201201949.png" srcset="/img/loading.gif" lazyload alt="image-20240606201201949"></p>
+<p><img src="/../images/image-20240606201201949.png" alt="image-20240606201201949"></p>
 <h5 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h5><p>集线器变化成交换机，用来给电脑分发ip地址，先规定交换机的前几位IP地址段，</p>
 <p>再有交换机来给电脑分配后几位地址</p>
-<p><img src="/../images/image-20240606201511484.png" srcset="/img/loading.gif" lazyload alt="image-20240606201511484"></p>
+<p><img src="/../images/image-20240606201511484.png" alt="image-20240606201511484"></p>
 <h5 id="路由器："><a href="#路由器：" class="headerlink" title="路由器："></a>路由器：</h5><p>路由器的出现用来管理各个交换机实现，不同交换机之间的网络设备的通讯</p>
-<p><img src="/../images/image-20240606202001732.png" srcset="/img/loading.gif" lazyload alt="image-20240606202001732"></p>
+<p><img src="/../images/image-20240606202001732.png" alt="image-20240606202001732"></p>
 <h5 id="网络通讯过程"><a href="#网络通讯过程" class="headerlink" title="网络通讯过程"></a>网络通讯过程</h5><p>鉴于ipv4的地址数量有限：</p>
 <p>我们分配了公网ip与私网ip：我们将公网分配一个地区的路由器上，在该地区内给设备分配私网ip地址</p>
 <p>私网ip地址可以能是重复的，不同公网IP下的私网IP地址可能相同，但是公网ip地址是唯一的</p>
@@ -399,396 +317,143 @@
 <p>为了区分同一台设备上运行的不同是程序，我们通过端口号进行区别</p>
 <p>比如：我们访问一个设备上的服务</p>
 <p>发送的数据包需要包含目标的ip以及服务对应的端口</p>
-<p><img src="/../images/image-20240606203728514.png" srcset="/img/loading.gif" lazyload alt="image-20240606203728514"></p>
-<h3 id="dns解析"><a href="#dns解析" class="headerlink" title="dns解析"></a>dns解析</h3><p><img src="/../images/image-20240606205056843.png" srcset="/img/loading.gif" lazyload alt="image-20240606205056843"></p>
-<p><img src="/../images/image-20240606205250980.png" srcset="/img/loading.gif" lazyload alt="image-20240606205250980"></p>
-<h5 id="dns解析分类"><a href="#dns解析分类" class="headerlink" title="dns解析分类"></a>dns解析分类</h5><p><img src="/../images/image-20240606205710832.png" srcset="/img/loading.gif" lazyload alt="image-20240606205710832"></p>
-<p><img src="/../images/image-20240703103550288.png" srcset="/img/loading.gif" lazyload alt="image-20240703103550288"></p>
+<p><img src="/../images/image-20240606203728514.png" alt="image-20240606203728514"></p>
+<h3 id="dns解析"><a href="#dns解析" class="headerlink" title="dns解析"></a>dns解析</h3><p><img src="/../images/image-20240606205056843.png" alt="image-20240606205056843"></p>
+<p><img src="/../images/image-20240606205250980.png" alt="image-20240606205250980"></p>
+<h5 id="dns解析分类"><a href="#dns解析分类" class="headerlink" title="dns解析分类"></a>dns解析分类</h5><p><img src="/../images/image-20240606205710832.png" alt="image-20240606205710832"></p>
+<p><img src="/../images/image-20240703103550288.png" alt="image-20240703103550288"></p>
 <h3 id="ip地址划分"><a href="#ip地址划分" class="headerlink" title="ip地址划分"></a>ip地址划分</h3><h5 id="Net"><a href="#Net" class="headerlink" title="Net"></a>Net</h5><p>将内网ip地址转化成公网ip地址的手段</p>
-<p><img src="/../images/image-20240701193928201.png" srcset="/img/loading.gif" lazyload alt="image-20240701193928201"></p>
-<h5 id="ip地址的类别"><a href="#ip地址的类别" class="headerlink" title="ip地址的类别"></a>ip地址的类别</h5><p><img src="/../images/image-20240701194050028.png" srcset="/img/loading.gif" lazyload alt="image-20240701194050028"></p>
-<p><img src="/../images/image-20240701195055964.png" srcset="/img/loading.gif" lazyload alt="image-20240701195055964"></p>
-<h5 id="ipv4地址不够用"><a href="#ipv4地址不够用" class="headerlink" title="ipv4地址不够用"></a>ipv4地址不够用</h5><p><img src="/../images/image-20240701195329157.png" srcset="/img/loading.gif" lazyload alt="image-20240701195329157"></p>
+<p><img src="/../images/image-20240701193928201.png" alt="image-20240701193928201"></p>
+<h5 id="ip地址的类别"><a href="#ip地址的类别" class="headerlink" title="ip地址的类别"></a>ip地址的类别</h5><p><img src="/../images/image-20240701194050028.png" alt="image-20240701194050028"></p>
+<p><img src="/../images/image-20240701195055964.png" alt="image-20240701195055964"></p>
+<h5 id="ipv4地址不够用"><a href="#ipv4地址不够用" class="headerlink" title="ipv4地址不够用"></a>ipv4地址不够用</h5><p><img src="/../images/image-20240701195329157.png" alt="image-20240701195329157"></p>
 <h3 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h3><p>子网掩码就是将两个IP地址通过子网掩码进行与运算根据运算结果是否一致判断是否属于一个网段</p>
-<p><img src="/../images/image-20240701200715503.png" srcset="/img/loading.gif" lazyload alt="image-20240701200715503"></p>
-<p><img src="/../images/image-20240701200733820.png" srcset="/img/loading.gif" lazyload alt="image-20240701200733820"></p>
-<h3 id="文字编码"><a href="#文字编码" class="headerlink" title="文字编码"></a>文字编码</h3><p><img src="/../images/image-20240703103648931.png" srcset="/img/loading.gif" lazyload alt="image-20240703103648931"></p>
+<p><img src="/../images/image-20240701200715503.png" alt="image-20240701200715503"></p>
+<p><img src="/../images/image-20240701200733820.png" alt="image-20240701200733820"></p>
+<h3 id="文字编码"><a href="#文字编码" class="headerlink" title="文字编码"></a>文字编码</h3><p><img src="/../images/image-20240703103648931.png" alt="image-20240703103648931"></p>
 <h3 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h3><h5 id="icmp"><a href="#icmp" class="headerlink" title="icmp"></a>icmp</h5><p>简单理解就是在ping的时候应用的协议</p>
-<p><img src="/../images/image-20240703104633421.png" srcset="/img/loading.gif" lazyload alt="image-20240703104633421"></p>
-<p><img src="/../images/image-20240703103833603.png" srcset="/img/loading.gif" lazyload alt="image-20240703103833603"></p>
+<p><img src="/../images/image-20240703104633421.png" alt="image-20240703104633421"></p>
+<p><img src="/../images/image-20240703103833603.png" alt="image-20240703103833603"></p>
 <h5 id="arp欺骗"><a href="#arp欺骗" class="headerlink" title="arp欺骗"></a>arp欺骗</h5><p>就是在接受arp广播时伪装自己是目标主机</p>
-<p><img src="/../images/image-20240703103910202.png" srcset="/img/loading.gif" lazyload alt="image-20240703103910202"></p>
-<h3 id="TCP三次握手，四次挥手"><a href="#TCP三次握手，四次挥手" class="headerlink" title="TCP三次握手，四次挥手"></a>TCP三次握手，四次挥手</h3><p><img src="/../images/image-20240703104250495.png" srcset="/img/loading.gif" lazyload alt="image-20240703104250495"></p>
-<h5 id="tcp与udp的区别"><a href="#tcp与udp的区别" class="headerlink" title="tcp与udp的区别"></a>tcp与udp的区别</h5><p><img src="/../images/image-20240703104113600.png" srcset="/img/loading.gif" lazyload alt="image-20240703104113600"></p>
-<p><img src="/../images/image-20240703104145178.png" srcset="/img/loading.gif" lazyload alt="image-20240703104145178"></p>
-<h5 id="tcp数据包类型"><a href="#tcp数据包类型" class="headerlink" title="tcp数据包类型"></a>tcp数据包类型</h5><p><img src="/../images/image-20240703104426048.png" srcset="/img/loading.gif" lazyload alt="image-20240703104426048"></p>
-<h5 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h5><p><img src="/../images/image-20240703114222461.png" srcset="/img/loading.gif" lazyload alt="image-20240703114222461"></p>
-<p><img src="/../images/image-20240703114233981.png" srcset="/img/loading.gif" lazyload alt="image-20240703114233981"></p>
-<h5 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h5><p><img src="/../images/image-20240703170837990.png" srcset="/img/loading.gif" lazyload alt="image-20240703170837990"></p>
-<p><img src="/../images/image-20240703170829391.png" srcset="/img/loading.gif" lazyload alt="image-20240703170829391"></p>
-<p><img src="/../images/image-20240703170846981.png" srcset="/img/loading.gif" lazyload alt="image-20240703170846981"></p>
-<p><img src="/../images/image-20240703170914745.png" srcset="/img/loading.gif" lazyload alt="image-20240703170914745"></p>
-<p><img src="/../images/image-20240703170921226.png" srcset="/img/loading.gif" lazyload alt="image-20240703170921226"></p>
-<h3 id="TCPdump抓包"><a href="#TCPdump抓包" class="headerlink" title="TCPdump抓包"></a>TCPdump抓包</h3><p><img src="/../images/image-20240704224832452.png" srcset="/img/loading.gif" lazyload alt="image-20240704224832452"></p>
+<p><img src="/../images/image-20240703103910202.png" alt="image-20240703103910202"></p>
+<h3 id="TCP三次握手，四次挥手"><a href="#TCP三次握手，四次挥手" class="headerlink" title="TCP三次握手，四次挥手"></a>TCP三次握手，四次挥手</h3><p><img src="/../images/image-20240703104250495.png" alt="image-20240703104250495"></p>
+<h5 id="tcp与udp的区别"><a href="#tcp与udp的区别" class="headerlink" title="tcp与udp的区别"></a>tcp与udp的区别</h5><p><img src="/../images/image-20240703104113600.png" alt="image-20240703104113600"></p>
+<p><img src="/../images/image-20240703104145178.png" alt="image-20240703104145178"></p>
+<h5 id="tcp数据包类型"><a href="#tcp数据包类型" class="headerlink" title="tcp数据包类型"></a>tcp数据包类型</h5><p><img src="/../images/image-20240703104426048.png" alt="image-20240703104426048"></p>
+<h5 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h5><p><img src="/../images/image-20240703114222461.png" alt="image-20240703114222461"></p>
+<p><img src="/../images/image-20240703114233981.png" alt="image-20240703114233981"></p>
+<h5 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h5><p><img src="/../images/image-20240703170837990.png" alt="image-20240703170837990"></p>
+<p><img src="/../images/image-20240703170829391.png" alt="image-20240703170829391"></p>
+<p><img src="/../images/image-20240703170846981.png" alt="image-20240703170846981"></p>
+<p><img src="/../images/image-20240703170914745.png" alt="image-20240703170914745"></p>
+<p><img src="/../images/image-20240703170921226.png" alt="image-20240703170921226"></p>
+<h3 id="TCPdump抓包"><a href="#TCPdump抓包" class="headerlink" title="TCPdump抓包"></a>TCPdump抓包</h3><p><img src="/../images/image-20240704224832452.png" alt="image-20240704224832452"></p>
 <h3 id="网络工具"><a href="#网络工具" class="headerlink" title="网络工具"></a>网络工具</h3><h5 id="1-nmap"><a href="#1-nmap" class="headerlink" title="1.nmap"></a>1.nmap</h5><h5 id="2-traceroute和tracert"><a href="#2-traceroute和tracert" class="headerlink" title="2.traceroute和tracert"></a>2.traceroute和tracert</h5><p>追送数据包的路由跳转</p>
-<p><img src="/../images/image-20240704225151280.png" srcset="/img/loading.gif" lazyload alt="image-20240704225151280"></p>
-<h3 id="VMware虚拟机的网络模式"><a href="#VMware虚拟机的网络模式" class="headerlink" title="VMware虚拟机的网络模式"></a>VMware虚拟机的网络模式</h3><p><img src="/../images/image-20240704225325554.png" srcset="/img/loading.gif" lazyload alt="image-20240704225325554"></p>
-<h3 id="静态路由项目"><a href="#静态路由项目" class="headerlink" title="静态路由项目"></a>静态路由项目</h3><p><img src="/../images/image-20240704225902617.png" srcset="/img/loading.gif" lazyload alt="image-20240704225902617"></p>
+<p><img src="/../images/image-20240704225151280.png" alt="image-20240704225151280"></p>
+<h3 id="VMware虚拟机的网络模式"><a href="#VMware虚拟机的网络模式" class="headerlink" title="VMware虚拟机的网络模式"></a>VMware虚拟机的网络模式</h3><p><img src="/../images/image-20240704225325554.png" alt="image-20240704225325554"></p>
+<h3 id="静态路由项目"><a href="#静态路由项目" class="headerlink" title="静态路由项目"></a>静态路由项目</h3><p><img src="/../images/image-20240704225902617.png" alt="image-20240704225902617"></p>
 <h5 id="静态路由配置"><a href="#静态路由配置" class="headerlink" title="静态路由配置"></a>静态路由配置</h5><p>在未配置静态路由前，在不同网段的两个主机是无法互相ping通的</p>
-<p><img src="/../images/image-20240704230102142.png" srcset="/img/loading.gif" lazyload alt="image-20240704230102142"></p>
+<p><img src="/../images/image-20240704230102142.png" alt="image-20240704230102142"></p>
 <h5 id="配置静态路由"><a href="#配置静态路由" class="headerlink" title="配置静态路由"></a>配置静态路由</h5><p>配置静态路由后，当我们用01主机访问02主机是可以ping，但是01ping03不可以，原因是当我们01ping03时，数据经过02.02发现不是找的自己就将数据包丢掉，从而无法找到03.此时我们就需要打开02 的转发功能，实现目的</p>
 <p>注意：也要给03主机配置静态路由，否则03就无法访问01主机</p>
-<p><img src="/../images/image-20240704231330007.png" srcset="/img/loading.gif" lazyload alt="image-20240704231330007"></p>
-<h5 id="打开转发功能"><a href="#打开转发功能" class="headerlink" title="打开转发功能"></a>打开转发功能</h5><p><img src="/../images/image-20240704231335232.png" srcset="/img/loading.gif" lazyload alt="image-20240704231335232"></p>
-<p><img src="/../images/image-20240704231653064.png" srcset="/img/loading.gif" lazyload alt="image-20240704231653064"></p>
-<p><img src="/../images/image-20240705002335936.png" srcset="/img/loading.gif" lazyload alt="image-20240705002335936"></p>
+<p><img src="/../images/image-20240704231330007.png" alt="image-20240704231330007"></p>
+<h5 id="打开转发功能"><a href="#打开转发功能" class="headerlink" title="打开转发功能"></a>打开转发功能</h5><p><img src="/../images/image-20240704231335232.png" alt="image-20240704231335232"></p>
+<p><img src="/../images/image-20240704231653064.png" alt="image-20240704231653064"></p>
+<p><img src="/../images/image-20240705002335936.png" alt="image-20240705002335936"></p>
 <h5 id="数据包发送原理"><a href="#数据包发送原理" class="headerlink" title="数据包发送原理"></a>数据包发送原理</h5><p>01主机发送数据包，目标ip为03主机，目标mac为02主机，利用mac地址01与02建立连接之后，02主机探测发现目标ip不是自己，由于转发功能将数据包进行转发，并将原mac地址改为02主机，目标mac地址改为03主机，从而将数据包发送给03主机（ip地址定位，mac地址实现同一网段通讯）</p>
-<p><img src="/../images/image-20240705095601326.png" srcset="/img/loading.gif" lazyload alt="image-20240705095601326"></p>
-<h3 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h3><p>  <img src="/../images/image-20240705194621384.png" srcset="/img/loading.gif" lazyload alt="image-20240705194621384"></p>
-<h3 id="vlan"><a href="#vlan" class="headerlink" title="vlan"></a>vlan</h3><p><img src="/../images/image-20240705210937552.png" srcset="/img/loading.gif" lazyload alt="image-20240705210937552"></p>
-<h5 id="交换机类型"><a href="#交换机类型" class="headerlink" title="交换机类型"></a>交换机类型</h5><p><img src="/../images/image-20240705210930590.png" srcset="/img/loading.gif" lazyload alt="image-20240705210930590"></p>
-<h5 id="配置vlan"><a href="#配置vlan" class="headerlink" title="配置vlan"></a>配置vlan</h5><p><img src="/../images/image-20240705212314968.png" srcset="/img/loading.gif" lazyload alt="image-20240705212314968"></p>
-<p><img src="/../images/image-20240705212414941.png" srcset="/img/loading.gif" lazyload alt="image-20240705212414941"></p>
-<h3 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h3><p><img src="/../images/image-20240705212545130.png" srcset="/img/loading.gif" lazyload alt="image-20240705212545130"></p>
-<p><img src="/../images/image-20240705212707173.png" srcset="/img/loading.gif" lazyload alt="image-20240705212707173"></p>
+<p><img src="/../images/image-20240705095601326.png" alt="image-20240705095601326"></p>
+<h3 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h3><p>  <img src="/../images/image-20240705194621384.png" alt="image-20240705194621384"></p>
+<h3 id="vlan"><a href="#vlan" class="headerlink" title="vlan"></a>vlan</h3><p><img src="/../images/image-20240705210937552.png" alt="image-20240705210937552"></p>
+<h5 id="交换机类型"><a href="#交换机类型" class="headerlink" title="交换机类型"></a>交换机类型</h5><p><img src="/../images/image-20240705210930590.png" alt="image-20240705210930590"></p>
+<h5 id="配置vlan"><a href="#配置vlan" class="headerlink" title="配置vlan"></a>配置vlan</h5><p><img src="/../images/image-20240705212314968.png" alt="image-20240705212314968"></p>
+<p><img src="/../images/image-20240705212414941.png" alt="image-20240705212414941"></p>
+<h3 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h3><p><img src="/../images/image-20240705212545130.png" alt="image-20240705212545130"></p>
+<p><img src="/../images/image-20240705212707173.png" alt="image-20240705212707173"></p>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>网络基础</div>
-      <div>http://example.com/2024/09/12/网络基础/</div>
     </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>Gizz</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2024年9月12日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-cc-by"></i>
-                  </span>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/09/12/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" rel="prev" title="渗透学习">
+                  <i class="fa fa-angle-left"></i> 渗透学习
                 </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2024/09/12/web%E6%9C%8D%E5%8A%A1/" title="web服务">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">web服务</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2024/09/12/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" title="渗透学习">
-                        <span class="hidden-mobile">渗透学习</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
+            <div class="post-nav-item">
+                <a href="/2024/09/12/web%E6%9C%8D%E5%8A%A1/" rel="next" title="web服务">
+                  web服务 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
 
 
 
 
-  
 
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
 </div>
-
-    
-
-    
   </main>
 
-  <footer>
+  <footer class="footer">
     <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-</div>
 
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Gizz</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
   </footer>
 
-  <!-- Scripts -->
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
   
 
 
 
 
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
 
 
   
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+
+
+
+
 </body>
 </html>

